@@ -10,8 +10,11 @@ const store = configureStore();
 render(
     <Provider store={store}>
         <Router history={browserHistory}>
-      <Route path="/" component={App}>
-      </Route>
+            <Route path="/pm" component={App}>
+                <IndexRoute path="/pm/portfolio" component="PortfolioComponent"/>
+                <Route path="/pm/addnew" component="NewOrderComponent"/>
+                <Route path="/pm/draft" component="DraftComponent"/>
+            </Route>
     </Router>
     </Provider>,
     document.getElementById('root')
