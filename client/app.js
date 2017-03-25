@@ -5,15 +5,17 @@ import configureStore from './store/configureStore';
 import App from './components/MainScript'
 import { Router, Route, IndexRoute, browserHistory } from "react-router";
 import {baseUrl} from './components/common-components/common';
+import Main from './components/Main.component.js';
+import NewOrderComponent from './components/pm/newOrder';
 const store = configureStore();
 //here sending empty initialstates
 render(
     <Provider store={store}>
         <Router history={browserHistory}>
-            <Route path="/pm" component={App}>
-                <IndexRoute path="/pm/portfolio" component="PortfolioComponent"/>
-                <Route path="/pm/addnew" component="NewOrderComponent"/>
-                <Route path="/pm/draft" component="DraftComponent"/>
+            <Route path="/" component={App}>
+                <IndexRoute component={NewOrderComponent}/>
+                {/*<Route path="/pm/addnew" component="NewOrderComponent"/>
+                <Route path="/pm/draft" component="DraftComponent"/>*/}
             </Route>
     </Router>
     </Provider>,
