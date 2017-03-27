@@ -1,10 +1,12 @@
 import { combineReducers } from 'redux';
-import { items, itemsHasErrored, itemsIsLoading } from './items';
+import {traderItems, stockItems} from './items';
 
 var rootReducer= combineReducers({
-    items,
-    itemsHasErrored,
-    itemsIsLoading
+    // items,
+    // itemsHasErrored,
+    // itemsIsLoading,
+     traderItems,
+     stockItems
 });
 
 export default rootReducer;
