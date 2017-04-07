@@ -15,7 +15,7 @@ render(
         <Router history={browserHistory}>
             <Route path="/" component={App}>
                 <IndexRoute component={LoginComponent}/>
-                <Route path="/view/" component={TraderMainComponent}/>
+                <Route path="/view/:id" component={TraderMainComponent}/>
                 {/*<Route path="/pm/addnew" component="NewOrderComponent"/>
                 <Route path="/pm/draft" component="DraftComponent"/>*/}
             </Route>

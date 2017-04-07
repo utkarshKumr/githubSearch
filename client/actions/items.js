@@ -88,7 +88,7 @@ export function getTraders(url,data=undefined) {
             console.log("post called")
       return axios({
 			url: url,
-			timeout: 20000,
+			timeout: 0,
 			method: 'post',
             data,
 			responseType: 'json'
@@ -106,7 +106,7 @@ export function getTraders(url,data=undefined) {
             console.log("get called");
              return axios({
 			url: url,
-			timeout: 20000,
+			timeout: 0,
 			method: 'get',
 			responseType: 'json'
 		})

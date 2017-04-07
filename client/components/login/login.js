@@ -2,19 +2,36 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import {Link} from 'react-router';
 class LoginComponent extends React.Component{
+constructor(props)
+{
+    super(props);
+    this.state = {
+            id : 'AM',
+            name : 'Amadeus Mozart'
+    }
+    this.props.userName(this.state.name);
+}
 
+    // componentWilMount(){
+    //     this.props.userName(this.state.name);
+    // }
     componentDidMount(){
         console.log("inside did mount")
         this.props.getTraders("http://localhost:8080/users");
     }
+    
     traderLogin(){
         let user=ReactDOM.findDOMNode(this.refs.traderName).value;
-        var select;
-        for(let u of this.props.traders){
-            if(u.name === user)
-                select=u.id;
+        console.log(user);
+    this.props.traders.map((item)=>{
+        if(user===item.name)
+        {
+
+         this.setState({id:item.id,name:item.name});
         }
+    })
         this.props.userName(user);
+    
     }
     render(){
             console.log(this.props.traders);
@@ -25,7 +42,7 @@ class LoginComponent extends React.Component{
             <br/>
 
             <div className="form-inline">
-            <select className="form-control" ref="traderName">
+            <select className="form-control" ref="traderName" onChange={this.traderLogin.bind(this)}  >
                 {this.props.traders.map((item)=>(
                 <option key={item.id}> {item.name} </option>
                 ))}
@@ -33,8 +50,8 @@ class LoginComponent extends React.Component{
             </div>
             <br/>
             <div>
-            <Link to={`/view/`}>
-            <input type="button" className="btn btn-primary"  onClick={this.traderLogin.bind(this)} value="Login"></input>
+            <Link to={`/view/${this.state.id}`}>
+            <input type="button" className="btn btn-primary" value="Login"></input>
             </Link>
             </div>
         </div>)
