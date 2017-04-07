@@ -1,5 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import Popup from 'react-popup';
+import SweetAlert from 'react-bootstrap-sweetalert';
 class LoginComponent extends React.Component{
 
     componentDidMount(){
@@ -10,7 +12,11 @@ class LoginComponent extends React.Component{
     traderLogin(){
        console.log(ReactDOM.findDOMNode(this.refs.traderName).value);
     }
+    
+  
+
     render(){
+      
         
         return (
         
@@ -28,7 +34,9 @@ class LoginComponent extends React.Component{
             <br/>
             <div>
             <button className="btn btn-primary" onClick={this.traderLogin.bind(this)}>Login</button>
+            <button className="btn btn-danger" onClick={this.tradePop.bind(this)}>Hello</button>
             </div>
+   
         </div>)
     }
 };

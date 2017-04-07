@@ -1,3 +1,5 @@
+import axios from 'axios'
+
 export function itemsHasErrored(bool) {
     return {
         type: 'ITEMS_HAS_ERRORED',
@@ -55,26 +57,68 @@ export function stockFetchDataSuccess(items) {
 //     };
 // }
 
-export function getTraders(url){
-    return (dispatch)=>{
-        fetch(url).then((response)=>{
-            return response;
-        })
-        .then((response) => response.json())
-        .then((traders) => dispatch(traderFetchDataSuccess(traders)))
-        .catch(() => dispatch(itemsHasErrored(true)));
-    }
-}
+// export function getTraders(url){
+//     return (dispatch)=>{
+//         fetch(url).then((response)=>{
+//             return response;
+//         })
+//         .then((response) => response.json())
+//         .then((traders) => dispatch(traderFetchDataSuccess(traders)))
+//         .catch(() => dispatch(itemsHasErrored(true)));
+//     }
+// }
 
-export function getStocks(url){
-    return (dispatch)=>{
-        fetch(url).then((response)=>{
-            return response;
+// export function getStocks(url){
+//     return (dispatch)=>{
+//         fetch(url).then((response)=>{
+//             return response;
+//         })
+//         .then((response) => response.json())
+//         .then((items) => {
+//             dispatch(stockFetchDataSuccess(items.stock));
+//         })
+//         .catch(() => dispatch(itemsHasErrored(true)));
+//     }
+// }
+
+export function getTraders(url,data=undefined) {
+    console.log(data,url);
+    return (dispatch) => {
+        if(data){
+            console.log("post called")
+      return axios({
+			url: url,
+			timeout: 20000,
+			method: 'post',
+            data,
+			responseType: 'json'
+		})
+			.then(function(response) {
+                console.log(response.data)
+				dispatch(itemsFetchDataSuccess(response.data));
+			})
+			.catch(function(response){
+                console.log("no")
+				dispatch(itemsHasErrored(false));
+				// dispatch(pushState(null,'/error'));
+        })}
+        else if(!data){
+            console.log("get called");
+             return axios({
+			url: url,
+			timeout: 20000,
+			method: 'get',
+			responseType: 'json'
+		})
+			.then(function(response) {
+                console.log(response.data);
+				dispatch(traderFetchDataSuccess(response.data));
+			})
+			.catch(function(response){
+				dispatch(itemsHasErrored(response.data));
+				// dispatch(pushState(null,'/error'));
         })
-        .then((response) => response.json())
-        .then((items) => {
-            dispatch(stockFetchDataSuccess(items.stock));
-        })
-        .catch(() => dispatch(itemsHasErrored(true)));
-    }
+        }
+	
+    };
 }

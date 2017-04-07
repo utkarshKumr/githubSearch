@@ -13,7 +13,7 @@ import Main from './Main.component';
 const mapDispatchToProps = (dispatch) => {
         return {
             getStocks: (url) => dispatch(getStocks(url)),
-            getTraders: (url) => dispatch(getTraders(url))
+            getTraders: (url,data) => dispatch(getTraders(url,data))
         };
     }
     var App=connect(mapStateToProps, mapDispatchToProps)(Main);
