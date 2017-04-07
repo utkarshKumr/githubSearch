@@ -7,6 +7,7 @@ import { Router, Route, IndexRoute, browserHistory } from "react-router";
 import {baseUrl} from './components/common-components/common';
 import Main from './components/Main.component';
 import LoginComponent from './components/login/login';
+import TraderMainComponent from './components/TraderDesktop/main.trader.component';
 const store = configureStore();
 //here sending empty initialstates
 render(
@@ -14,6 +15,7 @@ render(
         <Router history={browserHistory}>
             <Route path="/" component={App}>
                 <IndexRoute component={LoginComponent}/>
+                <Route path="/view/" component={TraderMainComponent}/>
                 {/*<Route path="/pm/addnew" component="NewOrderComponent"/>
                 <Route path="/pm/draft" component="DraftComponent"/>*/}
             </Route>

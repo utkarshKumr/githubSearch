@@ -52,3 +52,13 @@ export function stockItems(state = [], action) {
             return state;
     }
 }
+
+export function newUser(state="",action){
+    switch(action.type){
+        case 'SELECT_USER_NAME':
+            return action.user;
+
+        default:
+            return state;    
+    }
+}

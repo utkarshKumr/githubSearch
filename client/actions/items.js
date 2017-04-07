@@ -122,3 +122,10 @@ export function getTraders(url,data=undefined) {
 	
     };
 }
+
+export function selectUser(user){
+    return {
+        type:'SELECT_USER_NAME',
+        user
+    }
+}

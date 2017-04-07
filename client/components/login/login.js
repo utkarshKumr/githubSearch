@@ -1,23 +1,23 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Popup from 'react-popup';
-import SweetAlert from 'react-bootstrap-sweetalert';
+import {Link} from 'react-router';
 class LoginComponent extends React.Component{
 
     componentDidMount(){
         console.log("inside did mount")
         this.props.getTraders("http://localhost:8080/users");
     }
-
     traderLogin(){
-       console.log(ReactDOM.findDOMNode(this.refs.traderName).value);
+        let user=ReactDOM.findDOMNode(this.refs.traderName).value;
+        var select;
+        for(let u of this.props.traders){
+            if(u.name === user)
+                select=u.id;
+        }
+        this.props.userName(user);
     }
-    
-  
-
     render(){
-      
-        
+            console.log(this.props.traders);
         return (
         
         <div className="container">
@@ -33,10 +33,10 @@ class LoginComponent extends React.Component{
             </div>
             <br/>
             <div>
-            <button className="btn btn-primary" onClick={this.traderLogin.bind(this)}>Login</button>
-            <button className="btn btn-danger" onClick={this.tradePop.bind(this)}>Hello</button>
+            <Link to={`/view/`}>
+            <input type="button" className="btn btn-primary"  onClick={this.traderLogin.bind(this)} value="Login"></input>
+            </Link>
             </div>
-   
         </div>)
     }
 };
