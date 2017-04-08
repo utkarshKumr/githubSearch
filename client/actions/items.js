@@ -44,6 +44,14 @@ export function ordersFetchDataSuccess(orders) {
     };
 }
 
+export function deleteDataSuccess(items) {
+    console.log(items);
+    return {
+        type: 'DELETE_DATA_SUCCESS',
+        items
+    };
+}
+
 // export function itemsFetchData(url) {
 //     return (dispatch) => {
 //         dispatch(itemsIsLoading(true));
@@ -87,6 +95,44 @@ export function ordersFetchDataSuccess(orders) {
 //         .catch(() => dispatch(itemsHasErrored(true)));
 //     }
 // }
+export function getStocks(url){
+    return (dispatch) => {
+     console.log("get called inside getStocks");
+             return axios({
+			url: url,
+			timeout: 20000,
+			method: 'get',
+			responseType: 'json'
+		})
+			.then(function(response) {
+                console.log(response.data);
+				dispatch(stockFetchDataSuccess(response.data));
+			})
+			.catch(function(response){
+				dispatch(itemsHasErrored(response.data));
+				// dispatch(pushState(null,'/error'));
+        })
+      }
+}
+export function deleteOrders(url){
+    return (dispatch) => {
+     console.log("get called inside getStocks");
+             return axios({
+			url: url,
+			timeout: 20000,
+			method: 'delete',
+			responseType: 'json'
+		})
+			.then(function(response) {
+                console.log(response.data);
+				dispatch(deleteDataSuccess(response.data));
+			})
+			.catch(function(response){
+				dispatch(itemsHasErrored(response.data));
+				// dispatch(pushState(null,'/error'));
+        })
+      }
+}
 
 export function getTraders(url,data=undefined) {
     console.log(data,url);
@@ -113,7 +159,7 @@ export function getTraders(url,data=undefined) {
             console.log("get called");
              return axios({
 			url: url,
-			timeout: 0,
+			timeout: 20000,
 			method: 'get',
 			responseType: 'json'
 		})

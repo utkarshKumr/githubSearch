@@ -52,8 +52,19 @@ export function stockItems(state = [], action) {
             return state;
     }
 }
+export function deleteItems(state = [], action) {
+    console.log('insdide deleteItems');
+    console.log(action.items);
+    switch (action.type) {
+        case 'DELETE_DATA_SUCCESS':
+            return action.items;
 
-export function newUser(state="",action){
+        default:
+            return state;
+    }
+}
+
+export function newUser(state=[],action){
     switch(action.type){
         case 'SELECT_USER_NAME':
             return action.user;
