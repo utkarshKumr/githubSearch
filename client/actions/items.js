@@ -152,3 +152,10 @@ export function getOrders(url) {
 				dispatch(itemsHasErrored(false));
         })}
 }
+
+export function changeView(view){
+    return {
+        type:'VIEW_CHANGED',
+        view
+    }
+}

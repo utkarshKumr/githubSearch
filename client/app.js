@@ -18,7 +18,7 @@ render(
             <Route path="/" component={App}>
                 <IndexRoute component={LoginComponent}/>
                 <Route path="/view/:id" component={TraderMainComponent}>
-                </Route>    
+                </Route>        
             </Route>
     </Router>
     </Provider>,

@@ -71,3 +71,12 @@ export function orders(state=[],action){
             return state;    
     }
 }
+
+export function setView(state=1,action){
+    switch(action.type){
+        case 'VIEW_CHANGED':
+            return action.view;
+        default:
+            return state;    
+    }
+}
