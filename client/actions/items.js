@@ -37,6 +37,13 @@ export function stockFetchDataSuccess(items) {
     };
 }
 
+export function ordersFetchDataSuccess(orders) {
+    return {
+        type: 'ORDERS_FETCH_DATA_SUCCESS',
+        orders
+    };
+}
+
 // export function itemsFetchData(url) {
 //     return (dispatch) => {
 //         dispatch(itemsIsLoading(true));
@@ -128,4 +135,20 @@ export function selectUser(user){
         type:'SELECT_USER_NAME',
         user
     }
+}
+
+export function getOrders(url) {
+    return (dispatch) => {
+      return axios({
+			url: url,
+			timeout: 20000,
+			method: 'get',
+			responseType: 'json'
+		})
+			.then(function(response) {
+				dispatch(ordersFetchDataSuccess(response.data));
+			})
+			.catch(function(response){
+				dispatch(itemsHasErrored(false));
+        })}
 }
