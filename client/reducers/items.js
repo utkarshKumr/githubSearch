@@ -1,37 +1,6 @@
-// export function itemsHasErrored(state = false, action) {
-//     switch (action.type) {
-//         case 'ITEMS_HAS_ERRORED':
-//             return action.hasErrored;
 
-//         default:
-//             return state;
-//     }
-// }
-
-// export function itemsIsLoading(state = false, action) {
-//     switch (action.type) {
-//         case 'ITEMS_IS_LOADING':
-//             return action.isLoading;
-
-//         default:
-//             return state;
-//     }
-// }
-
-// export function items(state = [], action) {
-//     switch (action.type) {
-//         case 'ITEMS_FETCH_DATA_SUCCESS':
-//             return action.items;
-
-//         default:
-//             return state;
-//     }
-// }
 
 export function traderItems(state = [], action) {
-    console.log('insdide reducer');
-    console.log(state);
-    console.log(action);
     switch (action.type) {
         case 'TRADERS_FETCH_DATA_SUCCESS':
             return action.traders;
@@ -42,8 +11,6 @@ export function traderItems(state = [], action) {
 }
 
 export function stockItems(state = [], action) {
-    console.log('insdide reducer');
-    console.log(action);
     switch (action.type) {
         case 'STOCKS_FETCH_DATA_SUCCESS':
             return action.items;
@@ -52,18 +19,6 @@ export function stockItems(state = [], action) {
             return state;
     }
 }
-export function deleteItems(state = [], action) {
-    console.log('insdide deleteItems');
-    console.log(action.items);
-    switch (action.type) {
-        case 'DELETE_DATA_SUCCESS':
-            return action.items;
-
-        default:
-            return state;
-    }
-}
-
 export function newUser(state=[],action){
     switch(action.type){
         case 'SELECT_USER_NAME':
@@ -78,6 +33,29 @@ export function orders(state=[],action){
     switch(action.type){
         case 'ORDERS_FETCH_DATA_SUCCESS':
             return action.orders;
+        case 'orderCreatedEvent':
+            return [...state,action.data];
+        case 'allOrdersDeletedEvent':
+            return [];
+        case 'placementCreatedEvent':
+            for(let i=0;i<state.length;i++)
+                if(state[i].id === action.data.orderId )
+                {
+                    console.log("found");
+                    state[i].quantityPlaced=action.data.quantityPlaced;
+                    state[i].status=action.data.status;
+            }
+            console.log("aknxdax:",state);
+            return [...state];
+        case 'executionCreatedEvent':
+            for(let i=0;i<state.length;i++)
+                if(state[i].id === action.data.orderId )
+                {
+                    state[i].quantityExecuted=action.data.quantityExecuted;
+                    state[i].status=action.data.status;
+            }
+            return [...state];                
+
         default:
             return state;    
     }

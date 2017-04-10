@@ -16,13 +16,11 @@ constructor(props)
     //     this.props.userName(this.state.name);
     // }
     componentDidMount(){
-        console.log("inside did mount")
         this.props.getTraders("http://localhost:8080/users");
     }
     
     traderLogin(){
         let user=ReactDOM.findDOMNode(this.refs.traderName).value;
-        console.log(user);
     this.props.traders.map((item)=>{
         if(user===item.name)
         {
@@ -34,7 +32,6 @@ constructor(props)
     
     }
     render(){
-            console.log(this.props.traders);
         return (
         
         <div className="container">

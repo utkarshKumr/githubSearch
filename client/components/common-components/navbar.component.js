@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import ReactModal from 'react-modal';
+import Websocket from 'react-websocket';
 
 class NavigationComponent extends React.Component{
     constructor(props){
@@ -33,6 +34,17 @@ class NavigationComponent extends React.Component{
     this.setState({ showModal: false });
     
  }
+ handleData(data){
+   data=data.substring(2,data.length);
+   data=JSON.parse(data);
+  //  console.log(data[0],data[1]);
+    this.props.updateOrderSocket(data[0],data[1]);
+  //this.props.getOrders("http://localhost:8080/orders");
+ }
+
+ refreshOrders(){
+   this.props.getOrders("http://localhost:8080/orders");
+ }
   createOrder () {
     let orderSize = ReactDOM.findDOMNode(this.refs.orderNumber).value;
     for(let i=0;i<orderSize;i++)
@@ -42,11 +54,10 @@ class NavigationComponent extends React.Component{
       symbol:"",
       quantity:0,
       limitPrice:0,
-      traderId:1
+      traderId:this.props.params.id
     }
     let x = Math.ceil(Math.random() * 30)
-    // let counter = 1;
-    console.log();
+
     data.symbol = this.props.stocks[x-1].symbol
     // this.props.stocks.map((item,key)=>{
     //      if(counter===x)
@@ -81,16 +92,16 @@ class NavigationComponent extends React.Component{
            <input className='form-input' type="text" placeholder="value" ref="orderNumber" />
            </div>
           <button onClick={this.handleCloseModal} className="pull-right btn btn-danger">Cancel</button>
-          <button onClick={this.createOrder.bind(this)} className="pull-right btn btn-success">Create</button>  
-          <button onClick={this.deleteOrder.bind(this)} className="pull-right btn btn-success">Delete All</button>          
+          <button onClick={this.createOrder.bind(this)} className="pull-right btn btn-success">Create</button>            
                   
         </ReactModal>
                 <button className="orderCreation"  onClick={this.deleteOrder.bind(this)}><b>Delete All</b></button>
-                <button className="orderCreation"><b>Refresh</b></button>
+                <button className="orderCreation" onClick={this.refreshOrders.bind(this)}><b>Refresh</b></button>
                 <span className="pull-right">
                     <button className="icons active" onClick={this.changeView.bind(this,1)}><i className="fa fa-table"></i></button>
                     <button className="icons" onClick={this.changeView.bind(this,0)}><i className="fa fa-bar-chart"></i></button>
                 </span>
+
 
             </div>
         )

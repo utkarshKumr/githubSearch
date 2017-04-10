@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {BootstrapTable,TableHeaderColumn} from 'react-bootstrap-table';
+
 class TableComponent extends React.Component{
     componentDidMount(){
         this.props.getOrders("http://localhost:8080/orders");

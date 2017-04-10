@@ -1,6 +1,12 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { getTraders, getStocks,selectUser,getOrders,changeView,deleteOrders } from '../actions/items';
+import { getTraders, 
+    getStocks,
+    selectUser,
+    getOrders,
+    changeView,
+    deleteOrders,
+    updateOrderSocket } from '../actions/items';
 import Main from './Main.component';
 
   const mapStateToProps = (state) => {
@@ -21,7 +27,8 @@ const mapDispatchToProps = (dispatch) => {
             userName: (user)=>dispatch(selectUser(user)),
             getOrders: (url)=>dispatch(getOrders(url)),
             changeView: (view)=>dispatch(changeView(view)),
-            deleteOrders: (url) => dispatch(deleteOrders(url))
+            deleteOrders: (url) => dispatch(deleteOrders(url)),
+            updateOrderSocket:(msg,data)=>dispatch(updateOrderSocket(msg,data))
         };
     }
     var App=connect(mapStateToProps, mapDispatchToProps)(Main);

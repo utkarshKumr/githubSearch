@@ -6,7 +6,6 @@ var BarStackHorizontalChart = require('react-d3-basic').BarStackHorizontalChart;
 class ChartComponent extends React.Component{
 
     componentDidMount(){
-        console.log("inside did mount");
         this.props.getOrders("http://localhost:8080/orders");
     }
 
@@ -18,16 +17,17 @@ class ChartComponent extends React.Component{
 
         var data=[];
         var count=0;
-        console.log(this.props.orders);
+        var height=50;
         var chartData=this.props.orders.map((item,index)=>{
-            console.log(item.id);
+
             var id=item.id;
             var qplaced=item.quantityPlaced-item.quantityExecuted;
             var Executed=(item.quantityExecuted/item.quantity);
             var Placed=(qplaced/item.quantity);
             var Total=1-Executed-Placed;
             data.push({id,Executed,Placed,Total});
-            console.log(Executed+" "+Placed+" "+Total);
+            console.log(id,Total,Executed,Placed);
+            height+=50;
             count++;
         });
 
@@ -55,7 +55,6 @@ class ChartComponent extends React.Component{
             return +d;
         },
         width=1000,
-        height=count*25,
         legendClassName = "test-legend",
         legendPosition = 'right',
         yScale = "ordinal",
@@ -63,27 +62,31 @@ class ChartComponent extends React.Component{
         showYGrid = false,
         xOrient = 'top',
         xTickOrient = 'top',
-        xTickFormat = d3.format("%");
-        console.log(data);   
-        
+        yOrient="right",
+        xTickFormat = d3.format("%"),
+        xTicks=[2,"%"],
+        yTicks=[y,"%"];
         // var orderData=this.props.orders[0];
         //   console.log(orderData);   
             return (
             
                 <div className="container">
-                    <h1>Chart</h1>
+                    <h1 className="text-center">Order Execution Status</h1>
                     <BarStackHorizontalChart
-                        title='Order Execution Status'
+                        title=''
                         data={data}
                         chartSeries={chartSeries}
                         width={width}
                         height={height}
                         showYGrid={showYGrid}
                         xOrient={xOrient}
+                        yOrient={yOrient}
                         yScale={yScale}
                         yLabel={yLabel}
                         y={y}
                         x={x}
+                        xTicks={xTicks}
+                        yTicks={yTicks}
                         xTickFormat={xTickFormat}
                         legendClassName = {legendClassName}
                         legendPosition= {legendPosition}
