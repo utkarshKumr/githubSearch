@@ -6,9 +6,9 @@ class TableComponent extends React.Component{
     componentDidMount(){
         this.props.getOrders("http://localhost:8080/orders");
     }
-priceFormatter(cell, row) {
-  return `<i class='glyphicon glyphicon-usd'></i> ${cell}`;
-}
+    priceFormatter(cell, row) {
+        return `<i class='glyphicon glyphicon-usd'></i> ${cell}`;
+    }
 
 createCustomModalHeader(onClose, onSave) {
     const headerStyle = {
@@ -31,6 +31,7 @@ createCustomModalHeader(onClose, onSave) {
         const options = {
             insertModalHeader: this.createCustomModalHeader
             };
+
         return (
             <div>
               <BootstrapTable data={this.props.orders} options={options} striped hover>

@@ -1,8 +1,17 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import ReactModal from 'react-modal';
-import Websocket from 'react-websocket';
 
+const customStyles = {
+  content : {
+    top                   : '50%',
+    left                  : '50%',
+    right                 : 'auto',
+    bottom                : 'auto',
+    marginRight           : '-50%',
+    transform             : 'translate(-50%, -50%)'
+  }
+};
 class NavigationComponent extends React.Component{
     constructor(props){
         super(props);
@@ -34,13 +43,7 @@ class NavigationComponent extends React.Component{
     this.setState({ showModal: false });
     
  }
- handleData(data){
-   data=data.substring(2,data.length);
-   data=JSON.parse(data);
-  //  console.log(data[0],data[1]);
-    this.props.updateOrderSocket(data[0],data[1]);
-  //this.props.getOrders("http://localhost:8080/orders");
- }
+
 
  refreshOrders(){
    this.props.getOrders("http://localhost:8080/orders");
@@ -79,14 +82,17 @@ class NavigationComponent extends React.Component{
     }
     this.setState({ showModal: false });
   }
+
     render(){
+      console.log(this.customStyles);
         return (
             <div>
                 <button className="orderCreation" onClick={this.handleOpenModal}><b>Trade</b></button>
                 <ReactModal 
            isOpen={this.state.showModal}
            contentLabel="onRequestClose Example"
-           onRequestClose={this.handleCloseModal}>
+           onRequestClose={this.handleCloseModal}
+        style = {customStyles}>
         <div>
           <p>Enter number of trades</p>
            <input className='form-input' type="text" placeholder="value" ref="orderNumber" />
