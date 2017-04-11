@@ -59,16 +59,9 @@ class NavigationComponent extends React.Component{
       limitPrice:0,
       traderId:this.props.params.id
     }
-    let x = Math.ceil(Math.random() * 30)
+    let x = Math.ceil(Math.random() * 30);
 
-    data.symbol = this.props.stocks[x-1].symbol
-    // this.props.stocks.map((item,key)=>{
-    //      if(counter===x)
-    //      {
-    //        data.symbol = item.symbol;
-    //     }
-    //     counter++;
-    // })
+    data.symbol = this.props.stocks[x-1].symbol;
     if(Math.ceil(Math.random() * 2)===1)
     {
       data.side = "buy"
@@ -97,11 +90,12 @@ class NavigationComponent extends React.Component{
           <p>Enter number of trades</p>
            <input className='form-input' type="text" placeholder="value" ref="orderNumber" />
            </div>
-          <button onClick={this.handleCloseModal} className="pull-right btn btn-danger">Cancel</button>
-          <button onClick={this.createOrder.bind(this)} className="pull-right btn btn-success">Create</button>            
+           <hr/>
+          <button onClick={this.handleCloseModal} className="pull-right">Cancel</button>
+          <button onClick={this.createOrder.bind(this)} className="pull-right">Create</button>            
                   
         </ReactModal>
-                <button className="orderCreation"  onClick={this.deleteOrder.bind(this)}><b>Delete All</b></button>
+                <button className="orderCreation" onClick={this.deleteOrder.bind(this)}><b>Delete All</b></button>
                 <button className="orderCreation" onClick={this.refreshOrders.bind(this)}><b>Refresh</b></button>
                 <span className="pull-right">
                     <button className="icons active" onClick={this.changeView.bind(this,1)}><i className="fa fa-table"></i></button>

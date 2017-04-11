@@ -153,3 +153,10 @@ export function updateOrderSocket(msg,data={}){
         data
     }
 }
+
+export function auth(flag){
+    return {
+        type:'FLAG',
+        flag
+    }
+}

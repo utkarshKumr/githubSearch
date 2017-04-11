@@ -31,10 +31,14 @@ constructor(props)
         this.props.userName(user);
     
     }
+
+    auth(){
+        this.props.auth(true);
+    }
     render(){
         return (
         
-        <div className="container">
+        <div className="container"> 
             <h1>Login</h1>
             <br/>
 
@@ -47,7 +51,7 @@ constructor(props)
             </div>
             <br/>
             <div>
-            <Link to={`/view/${this.state.id}`}>
+            <Link to={`/view/${this.state.id}`} onClick={this.auth.bind(this)}>
             <input type="button" className="btn btn-primary" value="Login"></input>
             </Link>
             </div>

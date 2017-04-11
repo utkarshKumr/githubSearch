@@ -22,7 +22,7 @@ class TraderMainComponent extends React.Component{
         else if(this.props.view == 0){
             p=<ChartComponent {...this.props}/>;
         }
-
+        if(this.props.loginAuth)
         return (
             <div>
             <HeaderComponent {...this.props}/>
@@ -32,6 +32,12 @@ class TraderMainComponent extends React.Component{
                  onMessage={this.handleData.bind(this)}/>
             </div>
         )
+       else
+       return(
+           <div>
+           <h1>Session Expired!</h1>
+           </div>
+       ) 
     }
 };
 

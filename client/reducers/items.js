@@ -69,3 +69,12 @@ export function setView(state=1,action){
             return state;    
     }
 }
+
+export function auth(state=false,action){
+    switch(action.type){
+        case 'FLAG':
+            return action.flag;
+        default:
+            return state;    
+    }
+}
