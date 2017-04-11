@@ -15,18 +15,20 @@ class TraderMainComponent extends React.Component{
   //this.props.getOrders("http://localhost:8080/orders");
  }
     render(){
-        var p;
+        var view;
         if(this.props.view == 1){
-            p=<TableComponent {...this.props}/>
+            view=<TableComponent {...this.props}/>
         }
         else if(this.props.view == 0){
-            p=<ChartComponent {...this.props}/>;
+            view=<ChartComponent {...this.props}/>;
         }
+
+
         if(this.props.loginAuth)
         return (
             <div>
             <HeaderComponent {...this.props}/>
-            {p}
+            {view}
 
             <Websocket url='ws://localhost:8080/socket.io/?transport=websocket' 
                  onMessage={this.handleData.bind(this)}/>

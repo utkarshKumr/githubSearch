@@ -98,8 +98,8 @@ class NavigationComponent extends React.Component{
                 <button className="orderCreation" onClick={this.deleteOrder.bind(this)}><b>Delete All</b></button>
                 <button className="orderCreation" onClick={this.refreshOrders.bind(this)}><b>Refresh</b></button>
                 <span className="pull-right">
-                    <button className="icons active" onClick={this.changeView.bind(this,1)}><i className="fa fa-table"></i></button>
-                    <button className="icons" onClick={this.changeView.bind(this,0)}><i className="fa fa-bar-chart"></i></button>
+                    <button className={(this.props.view)?"iconsSelected":"icons"} onClick={this.changeView.bind(this,1)}><i className={(this.props.view)?"fa fa-table imgSelectedColor":"fa fa-table"}></i></button>
+                    <button className={(this.props.view)?"icons":"iconsSelected"} onClick={this.changeView.bind(this,0)}><i className={(this.props.view)?"fa fa-bar-chart":"fa fa-bar-chart imgSelectedColor"}></i></button>
                 </span>
 
 

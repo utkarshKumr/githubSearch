@@ -9,7 +9,9 @@ class HeaderComponent extends React.Component{
             user:this.props.user
         }
     }
-
+    auth(){
+        this.props.auth(false);
+    }
     render(){
            if(this.props.user.length>0)
              localStorage.setItem('user', this.props.user);
@@ -19,7 +21,7 @@ class HeaderComponent extends React.Component{
                      <p className="title">Trader Desktop</p>
                     <span className="pull-right"> 
                          <p className="username"><i>{localStorage.getItem('user')}</i></p>
-                         <Link to={``}>
+                         <Link to={``} onClick={this.auth.bind(this)}>
                         <a>Sign Out</a>
                         </Link>
                     </span>
