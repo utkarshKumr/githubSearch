@@ -42,7 +42,7 @@ export function orders(state=[],action){
                 if(state[i].id === action.data.orderId )
                 {
                     console.log("found");
-                    state[i].quantityPlaced=action.data.quantityPlaced;
+                    state[i].quantityPlaced+=action.data.quantityPlaced;
                     state[i].status=action.data.status;
             }
             console.log("aknxdax:",state);
@@ -51,7 +51,7 @@ export function orders(state=[],action){
             for(let i=0;i<state.length;i++)
                 if(state[i].id === action.data.orderId )
                 {
-                    state[i].quantityExecuted=action.data.quantityExecuted;
+                    state[i].quantityExecuted+=action.data.quantityExecuted;
                     state[i].status=action.data.status;
             }
             return [...state];                
