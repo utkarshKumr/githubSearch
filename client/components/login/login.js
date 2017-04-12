@@ -1,6 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {Link} from 'react-router';
+import cookie from 'react-cookie';
+
 class LoginComponent extends React.Component{
 constructor(props)
 {
@@ -12,28 +14,26 @@ constructor(props)
     this.props.userName(this.state.name);
 }
 
-    // componentWilMount(){
-    //     this.props.userName(this.state.name);
-    // }
     componentDidMount(){
         this.props.getTraders("http://localhost:8080/users");
     }
     
     traderLogin(){
         let user=ReactDOM.findDOMNode(this.refs.traderName).value;
+        var id;
     this.props.traders.map((item)=>{
         if(user===item.name)
         {
 
          this.setState({id:item.id,name:item.name});
+         id=item.id;
         }
     })
         this.props.userName(user);
-    
     }
 
     auth(){
-        this.props.auth(true);
+        cookie.save('id', this.state.id, { path: '/' });
     }
     render(){
         return (

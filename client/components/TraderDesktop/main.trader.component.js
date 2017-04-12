@@ -5,15 +5,15 @@ import HeaderComponent from '../common-components/headerComponent';
 import TableComponent from './table.component';
 import ChartComponent from './ChartComponent';
 import Websocket from 'react-websocket';
+import cookie from 'react-cookie';
 
 class TraderMainComponent extends React.Component{
      handleData(data){
    data=data.substring(2,data.length);
    data=JSON.parse(data);
-  //  console.log(data[0],data[1]);
     this.props.updateOrderSocket(data[0],data[1]);
-  //this.props.getOrders("http://localhost:8080/orders");
  }
+ 
     render(){
         var view;
         if(this.props.view == 1){
@@ -24,12 +24,11 @@ class TraderMainComponent extends React.Component{
         }
 
 
-        if(this.props.loginAuth)
+        if(this.props.params.id === cookie.load('id'))
         return (
             <div>
             <HeaderComponent {...this.props}/>
             {view}
-
             <Websocket url='ws://localhost:8080/socket.io/?transport=websocket' 
                  onMessage={this.handleData.bind(this)}/>
             </div>

@@ -154,9 +154,3 @@ export function updateOrderSocket(msg,data={}){
     }
 }
 
-export function auth(flag){
-    return {
-        type:'FLAG',
-        flag
-    }
-}
