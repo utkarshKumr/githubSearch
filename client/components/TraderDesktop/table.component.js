@@ -33,8 +33,9 @@ createCustomModalHeader(onClose, onSave) {
             };
 
         return (
-            <div>
-              <BootstrapTable data={this.props.orders} options={options} striped hover>
+           <div >
+            <div className="col-xs-12 hidden-xs hidden-sm">
+              <BootstrapTable data={this.props.orders} options={options}  striped hover>
                 <TableHeaderColumn dataField='id' isKey dataAlign="center">ID</TableHeaderColumn>
                 <TableHeaderColumn dataField='creationTime' dataAlign="center">Creation Time</TableHeaderColumn>
                 <TableHeaderColumn dataField='side' dataAlign="center">Side</TableHeaderColumn>
@@ -45,8 +46,38 @@ createCustomModalHeader(onClose, onSave) {
                 <TableHeaderColumn dataField='limitPrice' dataAlign="center" dataFormat={ this.priceFormatter }>Limit Price</TableHeaderColumn>
                 <TableHeaderColumn dataField='priority' dataAlign="center">Priority</TableHeaderColumn>
                 <TableHeaderColumn dataField='status' dataAlign="center">Status</TableHeaderColumn>
-                <TableHeaderColumn dataField='traderId' dataAlign="center">Trader</TableHeaderColumn>                                                
+                <TableHeaderColumn  dataField='traderId' dataAlign="center">Trader</TableHeaderColumn>                                                
             </BootstrapTable>
+            </div>
+
+               <div className="col-xs-12 visible-xs">
+              <BootstrapTable data={this.props.orders} options={options}  striped hover>
+                <TableHeaderColumn width='50' dataField='id' isKey dataAlign="center">ID</TableHeaderColumn>
+              
+                <TableHeaderColumn width='60' dataField='side' dataAlign="center">Side</TableHeaderColumn>
+                <TableHeaderColumn width='80' dataField='symbol' dataAlign="center">Symbol</TableHeaderColumn>
+                <TableHeaderColumn width='90' dataField='quantity' dataAlign="center">Quantity</TableHeaderColumn>
+            
+                <TableHeaderColumn width='90' dataField='limitPrice' dataAlign="center" dataFormat={ this.priceFormatter }>Limit Price</TableHeaderColumn>
+                                                            
+            </BootstrapTable>
+            </div>
+
+                <div className="col-xs-12 visible-sm">
+              <BootstrapTable data={this.props.orders} options={options}  striped hover>
+                <TableHeaderColumn dataField='id' isKey dataAlign="center">ID</TableHeaderColumn>
+                <TableHeaderColumn dataField='creationTime' dataAlign="center">Creation Time</TableHeaderColumn>
+                <TableHeaderColumn dataField='side' dataAlign="center">Side</TableHeaderColumn>
+                <TableHeaderColumn dataField='symbol' dataAlign="center">Symbol</TableHeaderColumn>
+                <TableHeaderColumn dataField='quantity' dataAlign="center">Quantity</TableHeaderColumn>
+                <TableHeaderColumn dataField='quantityPlaced' dataAlign="center">Placed</TableHeaderColumn>
+                <TableHeaderColumn dataField='quantityExecuted' dataAlign="center">Executed</TableHeaderColumn>
+                <TableHeaderColumn dataField='limitPrice' dataAlign="center" dataFormat={ this.priceFormatter }>Limit Price</TableHeaderColumn>
+        
+                <TableHeaderColumn dataField='status' dataAlign="center">Status</TableHeaderColumn>
+                                                   
+            </BootstrapTable>
+            </div>
             </div>
         )
     }

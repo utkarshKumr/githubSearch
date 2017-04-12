@@ -38,21 +38,22 @@ constructor(props)
     render(){
         return (
         
-        <div className="container"> 
+        <div className="container "> 
             <h1>Login</h1>
             <br/>
 
-            <div className="form-inline">
-            <select className="form-control" ref="traderName" onChange={this.traderLogin.bind(this)}  >
+            <div className="form-horizontal col-md-6  col-sm-6 col-xs-12">
+            <select className="form-control " ref="traderName" onChange={this.traderLogin.bind(this)}  >
                 {this.props.traders.map((item)=>(
                 <option key={item.id}> {item.name} </option>
                 ))}
             </select>
             </div>
             <br/>
-            <div>
+           
+            <div className="col-xs-12  col-sm-4 col-md-4">
             <Link to={`/view/${this.state.id}`} onClick={this.auth.bind(this)}>
-            <input type="button" className="btn btn-primary" value="Login"></input>
+            <input type="button" className="btn btn-primary  pull-right" value="Login"></input>
             </Link>
             </div>
         </div>)
