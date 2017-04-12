@@ -1,7 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import ReactModal from 'react-modal';
-
+import {
+  Modal,
+  ModalHeader,
+  ModalTitle,
+  ModalClose,
+  ModalBody,
+  ModalFooter
+} from 'react-modal-bootstrap';
 const customStyles = {
   content : {
     top                   : '50%',
@@ -16,11 +23,10 @@ class NavigationComponent extends React.Component{
     constructor(props){
         super(props);
          this.state = {
-      showModal: false,
+       isOpen: false,
       id : 0
     }
-     this.handleOpenModal = this.handleOpenModal.bind(this);
-    this.handleCloseModal = this.handleCloseModal.bind(this);
+     
     }
       componentDidMount(){
         console.log("inside did mount")
@@ -30,17 +36,20 @@ class NavigationComponent extends React.Component{
         console.log(value);
         this.props.changeView(value);
     }
-    handleOpenModal () {
-    this.setState({ showModal: true });
-  }
-  
-  handleCloseModal () {
-    this.setState({ showModal: false });
-  }
+   openModal() {
+  this.setState({
+    isOpen: true
+  });
+};
+ 
+hideModal(){
+  this.setState({
+    isOpen: false
+  });
+};
 
  deleteOrder(){
     this.props.deleteOrders("http://localhost:8080/orders")
-    this.setState({ showModal: false });
     
  }
 
@@ -73,28 +82,32 @@ class NavigationComponent extends React.Component{
     data.limitPrice = Math.ceil(Math.random() * 100);
     this.props.getTraders("http://localhost:8080/orders",data)
     }
-    this.setState({ showModal: false });
+    this.setState({ isOpen: false });
   }
 
     render(){
-      console.log(this.customStyles);
+     
         return (
             <div>
-                <button className="orderCreation" onClick={this.handleOpenModal}><b>Trade</b></button>
-                <ReactModal 
-           isOpen={this.state.showModal}
-           contentLabel="onRequestClose Example"
-           onRequestClose={this.handleCloseModal}
-        style = {customStyles}>
-        <div>
-          <p>Enter number of trades</p>
-           <input className='form-input' type="text" placeholder="value" ref="orderNumber" />
-           </div>
-           <hr/>
-          <button onClick={this.handleCloseModal} className="pull-right">Cancel</button>
-          <button onClick={this.createOrder.bind(this)} className="pull-right">Create</button>            
-                  
-        </ReactModal>
+                <button className="orderCreation" onClick={this.openModal.bind(this)}><b>Trade</b></button>
+        <Modal isOpen={this.state.isOpen} onRequestHide={this.hideModal.bind(this)}>
+  <ModalHeader>
+    <ModalClose onClick={this.hideModal.bind(this)}/>
+    <ModalTitle>Create Multiple Trades</ModalTitle>
+  </ModalHeader>
+  <ModalBody>
+    <p>Enter number of trades</p>
+    <input className='form-input' type="text" placeholder="value" ref="orderNumber" /> 
+  </ModalBody>
+  <ModalFooter>
+   <button onClick={this.createOrder.bind(this)} className='btn btn-primary'>
+      Create
+    </button>
+    <button className='btn btn-default' onClick={this.hideModal.bind(this)}>
+      Cancel
+    </button>
+  </ModalFooter>
+</Modal>
                 <button className="orderCreation" onClick={this.deleteOrder.bind(this)}><b>Delete All</b></button>
                 <button className="orderCreation" onClick={this.refreshOrders.bind(this)}><b>Refresh</b></button>
                 <span className="pull-right">
