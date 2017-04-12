@@ -97,7 +97,7 @@ hideModal(){
   </ModalHeader>
   <ModalBody>
     <p>Enter number of trades</p>
-    <input className='form-input' type="text" placeholder="value" ref="orderNumber" /> 
+    <input className='form-input form-control' type="text" ref="orderNumber" /> 
   </ModalBody>
   <ModalFooter>
    <button onClick={this.createOrder.bind(this)} className='btn btn-primary'>
