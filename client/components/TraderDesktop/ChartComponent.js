@@ -9,8 +9,8 @@ class ChartComponent extends React.Component{
 
     constructor(props){
         super(props);
-        this.width=1000;
-        this.showLegend;
+        this.width;
+        this.legendWidth;
     }
     componentDidMount(){
         this.props.getOrders("http://localhost:8080/orders");
@@ -20,18 +20,17 @@ class ChartComponent extends React.Component{
     changeWidth(windowSize){
         if (windowSize.windowWidth <= 768 ) {
             this.width = windowSize.windowWidth;
-            this.showLegend = true;
+            this.legendWidth=this.width*0.237;
         }
         else if(windowSize.windowWidth < 998){
             this.width = windowSize.windowWidth-150;
-            if(windowSize.windowWidth <= 991)
-                this.showLegend = true;
-            else
-                this.showLegend = false;
+            this.legendWidth=this.width*0.5;
+            
         }
         else {
-            this.width = 840;
-            this.showLegend = false;
+            this.width = windowSize.windowWidth;
+            this.legendWidth=this.width*0.5;
+            
         }
         this.setState({});
     }
@@ -58,19 +57,19 @@ class ChartComponent extends React.Component{
 
         var chartSeries  = [
             {
+            color:'#FF8000',            
             field: 'Executed',
-            name: 'Executed', 
-            color:'#FF8000'
+            name: 'Executed'            
            },
             {
+            color:'#FEBB68',            
             field: 'Placed',
-            name: 'Placed', 
-            color:'#FEBB68'
+            name: 'Placed'            
             },
             {
+            color:'#FFEFBF',            
             field: 'Total',
-            name: 'Total Orders', 
-            color:'#FFEFBF'
+            name: 'Total Order'             
             }
         ];
         var y = function(d) {
@@ -80,8 +79,9 @@ class ChartComponent extends React.Component{
             return +d;
         },
         width=this.width,
+        legendWidth=this.legendWidth,
         legendClassName = "test-legend",
-        legendPosition = 'right',
+        legendPosition = 'left',
         yScale = "ordinal",
         yLabel = 'Order Id',
         showYGrid = false,
@@ -102,7 +102,18 @@ class ChartComponent extends React.Component{
                 <WindowResizeListener onResize={this.changeWidth.bind(this)}/>
                     
                     <div className="container col-xs-12">
-                <div className="col-xs-8">
+                     <div className="col-md-6 col-xs-12 col-xs-offset-8 col-sm-offset-6">
+                    <Legend
+                        width= {legendWidth}
+                        height= {150}
+                        legendClassName= {legendClassName}
+                        legendPosition= {legendPosition}
+                        legendOffset= {legendOffset}
+                        chartSeries = {chartSeries}
+
+                    />
+                    </div> 
+                <div className="col-xs-12">
                     <BarStackHorizontalChart
                         title=''
                         data={data}
@@ -123,17 +134,7 @@ class ChartComponent extends React.Component{
                         legendPosition= {legendPosition}
                         showLegend={showLegend}
                     /></div>
-                    <div className="col-xs-4">
-                    <Legend
-                        width= {150}
-                        height= {150}
-                        legendClassName= {legendClassName}
-                        legendPosition= {legendPosition}
-                        legendOffset= {legendOffset}
-                        chartSeries = {chartSeries}
-
-                    />
-                    </div> 
+                   
                     </div>
                 </div>
         )
