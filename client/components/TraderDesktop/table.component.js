@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import {BootstrapTable,TableHeaderColumn} from 'react-bootstrap-table';
 import TextField from 'material-ui/TextField';
+import Checkbox from 'material-ui/Checkbox';
 
 class TableComponent extends React.Component{
     constructor(props){
@@ -38,6 +39,10 @@ createCustomModalHeader(onClose, onSave) {
         this.setState({search:event.target.value});
     }
 
+    notify(){
+        this.props.notify();
+    }
+
     render(){
 
                 const options = {
@@ -58,7 +63,10 @@ createCustomModalHeader(onClose, onSave) {
     }
     const style={
         width:'100%',
-        fontcolor:'black'
+        fontcolor:'black',
+        checkbox: {
+    marginBottom: 16,
+  }
     }
 
         return (
@@ -70,6 +78,7 @@ createCustomModalHeader(onClose, onSave) {
                                              />
                </div>                              
             <div className="col-xs-12 hidden-xs hidden-sm table">
+                    <Checkbox label="Notifications" style={style.checkbox} checked={this.props.notification} onClick={this.notify.bind(this)}/>
               <BootstrapTable data={orders} options={options} striped pagination>
                 <TableHeaderColumn dataField='id' isKey dataAlign="center">ID</TableHeaderColumn>
                 <TableHeaderColumn dataField='creationTime' dataAlign="center">Creation Time</TableHeaderColumn>

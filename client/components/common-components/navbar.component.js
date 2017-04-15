@@ -5,6 +5,7 @@ import RaisedButton from 'material-ui/RaisedButton';
 import darkBaseTheme from 'material-ui/styles/baseThemes/darkBaseTheme';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
+import {NotificationContainer, NotificationManager} from 'react-notifications';
 import {
   Modal,
   ModalHeader,
@@ -63,6 +64,13 @@ hideModal(){
  }
   createOrder () {
     let orderSize = ReactDOM.findDOMNode(this.refs.orderNumber).value;
+    if(this.props.notification)
+    {
+    if(orderSize>1)
+    NotificationManager.info(`${orderSize} orders created!`);
+    else if(orderSize==1)
+    NotificationManager.info(`${orderSize} order created!`);
+    }
     for(let i=0;i<orderSize;i++)
     {
     let data = {
@@ -98,7 +106,7 @@ const style = {
 };
      
         return (
-          <MuiThemeProvider muiTheme={getMuiTheme(darkBaseTheme)}>
+          
             <div>
                 {/*<button className="orderCreation" onClick={this.openModal.bind(this)}><b>Trade</b></button>*/}
                 <RaisedButton label="Trade" primary={true} style={style} onClick={this.openModal.bind(this)}/>
@@ -129,9 +137,9 @@ const style = {
                     <button className={(this.props.view)?"icons":"iconsSelected"} onClick={this.changeView.bind(this,0)}><i className={(this.props.view)?"fa fa-bar-chart":"fa fa-bar-chart imgSelectedColor"}></i></button>
                 </span>
 
-
+                <NotificationContainer/>
             </div>
-            </MuiThemeProvider>
+            
         )
     }
 };

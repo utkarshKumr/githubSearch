@@ -154,3 +154,9 @@ export function updateOrderSocket(msg,data={}){
     }
 }
 
+export function notify(){
+    return{
+        type:'NOTIFICATION'
+    }
+}
+

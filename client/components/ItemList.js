@@ -6,7 +6,8 @@ import { getTraders,
     getOrders,
     changeView,
     deleteOrders,
-    updateOrderSocket } from '../actions/items';
+    updateOrderSocket,
+    notify } from '../actions/items';
 import Main from './Main.component';
 
   const mapStateToProps = (state) => {
@@ -16,7 +17,8 @@ import Main from './Main.component';
             user:state.newUser,
             orders:state.orders,
             view:state.setView,
-            ordersLeft : state.deleteItems
+            ordersLeft : state.deleteItems,
+            notification:state.notification
         };
     }
 
@@ -28,7 +30,8 @@ const mapDispatchToProps = (dispatch) => {
             getOrders: (url)=>dispatch(getOrders(url)),
             changeView: (view)=>dispatch(changeView(view)),
             deleteOrders: (url) => dispatch(deleteOrders(url)),
-            updateOrderSocket:(msg,data)=>dispatch(updateOrderSocket(msg,data))
+            updateOrderSocket:(msg,data)=>dispatch(updateOrderSocket(msg,data)),
+            notify:()=>dispatch(notify())
         };
     }
     var App=connect(mapStateToProps, mapDispatchToProps)(Main);

@@ -34,7 +34,7 @@ export function orders(state=[],action){
         case 'ORDERS_FETCH_DATA_SUCCESS':
             return action.orders;
         case 'orderCreatedEvent':
-            return [...state,action.data];
+            return [action.data,...state];
         case 'allOrdersDeletedEvent':
             return [];
         case 'placementCreatedEvent':
@@ -70,3 +70,12 @@ export function setView(state=1,action){
     }
 }
 
+export function notification(state=1,action){
+    switch(action.type){
+        case 'NOTIFICATION':
+        console.log("inside");
+            return !state;
+        default:
+            return state;    
+    }
+}
