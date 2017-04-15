@@ -1,6 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import ReactModal from 'react-modal';
+import RaisedButton from 'material-ui/RaisedButton';
+import darkBaseTheme from 'material-ui/styles/baseThemes/darkBaseTheme';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import {
   Modal,
   ModalHeader,
@@ -86,10 +90,18 @@ hideModal(){
   }
 
     render(){
+
+const style = {
+  margin:5,
+      width:90,
+    height:25,
+};
      
         return (
+          <MuiThemeProvider muiTheme={getMuiTheme(darkBaseTheme)}>
             <div>
-                <button className="orderCreation" onClick={this.openModal.bind(this)}><b>Trade</b></button>
+                {/*<button className="orderCreation" onClick={this.openModal.bind(this)}><b>Trade</b></button>*/}
+                <RaisedButton label="Trade" primary={true} style={style} onClick={this.openModal.bind(this)}/>
         <Modal isOpen={this.state.isOpen} onRequestHide={this.hideModal.bind(this)}>
   <ModalHeader>
     <ModalClose onClick={this.hideModal.bind(this)}/>
@@ -107,9 +119,11 @@ hideModal(){
       Cancel
     </button>
   </ModalFooter>
-</Modal>
-                <button className="orderCreation" onClick={this.deleteOrder.bind(this)}><b>Delete All</b></button>
-                <button className="orderCreation" onClick={this.refreshOrders.bind(this)}><b>Refresh</b></button>
+</Modal> 
+                <RaisedButton label="Delete" onClick={this.deleteOrder.bind(this)} secondary={true} style={style}/>
+                <RaisedButton label="Refresh" style={style} onClick={this.refreshOrders.bind(this)} />
+               {/* <button className="orderCreation" onClick={this.deleteOrder.bind(this)}><b>Delete All</b></button>
+                <button className="orderCreation" onClick={this.refreshOrders.bind(this)}><b>Refresh</b></button>*/}
                 <span className="pull-right">
                     <button className={(this.props.view)?"iconsSelected":"icons"} onClick={this.changeView.bind(this,1)}><i className={(this.props.view)?"fa fa-table imgSelectedColor":"fa fa-table"}></i></button>
                     <button className={(this.props.view)?"icons":"iconsSelected"} onClick={this.changeView.bind(this,0)}><i className={(this.props.view)?"fa fa-bar-chart":"fa fa-bar-chart imgSelectedColor"}></i></button>
@@ -117,6 +131,7 @@ hideModal(){
 
 
             </div>
+            </MuiThemeProvider>
         )
     }
 };

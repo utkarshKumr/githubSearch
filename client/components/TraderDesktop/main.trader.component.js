@@ -26,7 +26,7 @@ class TraderMainComponent extends React.Component{
 
         if(this.props.params.id === cookie.load('id'))
         return (
-            <div>
+            <div className="Trader">
             <HeaderComponent {...this.props}/>
             {view}
             <Websocket url='ws://localhost:8080/socket.io/?transport=websocket' 
