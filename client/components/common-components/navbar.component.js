@@ -5,6 +5,7 @@ import RaisedButton from 'material-ui/RaisedButton';
 import darkBaseTheme from 'material-ui/styles/baseThemes/darkBaseTheme';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
+import DrawerComponent from './drawer.component';
 import {NotificationContainer, NotificationManager} from 'react-notifications';
 import {
   Modal,
@@ -130,9 +131,10 @@ const style = {
 </Modal> 
                 <RaisedButton label="Delete" onClick={this.deleteOrder.bind(this)} secondary={true} style={style}/>
                 <RaisedButton label="Refresh" style={style} onClick={this.refreshOrders.bind(this)} />
+                <DrawerComponent {...this.props} className="visible-md"/>
                {/* <button className="orderCreation" onClick={this.deleteOrder.bind(this)}><b>Delete All</b></button>
                 <button className="orderCreation" onClick={this.refreshOrders.bind(this)}><b>Refresh</b></button>*/}
-                <span className="pull-right">
+                <span className="pull-right hello">
                     <button className={(this.props.view)?"iconsSelected":"icons"} onClick={this.changeView.bind(this,1)}><i className={(this.props.view)?"fa fa-table imgSelectedColor":"fa fa-table"}></i></button>
                     <button className={(this.props.view)?"icons":"iconsSelected"} onClick={this.changeView.bind(this,0)}><i className={(this.props.view)?"fa fa-bar-chart":"fa fa-bar-chart imgSelectedColor"}></i></button>
                 </span>

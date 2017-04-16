@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
-import {traderItems, stockItems,newUser,orders,setView,auth,id,notification} from './items';
+import {traderItems, stockItems,newUser,orders,setView,auth,id,notification,nMessage} from './items';
 
 var rootReducer= combineReducers({
 
@@ -8,7 +8,8 @@ var rootReducer= combineReducers({
      newUser,
      orders,
      setView,
-     notification
+     notification,
+     nMessage
 });
 
 export default rootReducer;

@@ -160,3 +160,10 @@ export function notify(){
     }
 }
 
+export function notifyMessage(msg){
+    return{
+        type:'NOTIFICATION_MESSAGE',
+        msg
+    }
+}
+

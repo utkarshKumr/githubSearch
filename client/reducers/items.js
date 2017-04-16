@@ -79,3 +79,12 @@ export function notification(state=1,action){
             return state;    
     }
 }
+
+export function nMessage(state=[],action){
+    switch(action.type){
+        case 'NOTIFICATION_MESSAGE':
+            return [action.msg,...state];
+        default:
+            return state;    
+    }
+}
