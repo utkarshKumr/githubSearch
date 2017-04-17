@@ -20,7 +20,7 @@ class TraderMainComponent extends React.Component {
             console.log("deleted");
             if (this.props.notification)
                 NotificationManager.error('All trades Deleted!', 'Deleted', 3000);
-            this.props.notifyMessage({mess:'All trades Deleted',date:Date()});
+            this.props.notifyMessage({mess:'All trades Deleted',date:Date(),color:"bg-danger"});
         }
 
         else if (data[1].status === 'Executed' || data[0]==='executionCreatedEvent') {
@@ -33,12 +33,12 @@ class TraderMainComponent extends React.Component {
 
                     mess2= `${data[1].quantityExecuted} stocks of ${this.props.orders[i].symbol} 
                     (ID:${data[1].orderId})
-                    are executed!`
+                    are Executed!`
                     break;
                 }
             if (this.props.notification && data[1].status === 'Executed')
                 NotificationManager.success(mess1, 'Executed!', 10000);
-            this.props.notifyMessage({mess:mess2,date:Date()});
+            this.props.notifyMessage({mess:mess2,date:Date(),color:"bg-success"});
         }
         else if (data[1].status === 'Placed' || data[0]==='placementCreatedEvent') {
             var mess1,mess2;
@@ -49,12 +49,12 @@ class TraderMainComponent extends React.Component {
                 Stock: ${this.props.orders[i].symbol}`;
                     mess2= `${data[1].quantityPlaced} stocks of ${this.props.orders[i].symbol} 
                     (ID:${data[1].orderId})
-                    are placed!`
+                    are Placed!`
                     break;               
                 }
             if (this.props.notification && data[1].status === 'Placed')
                 NotificationManager.info(mess1, 'Placed!', 5000);
-            this.props.notifyMessage({mess:mess2,date:Date()});
+            this.props.notifyMessage({mess:mess2,date:Date(),color:"bg-info"});
         }
     }
 

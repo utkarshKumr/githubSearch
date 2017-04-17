@@ -94,14 +94,15 @@ class ChartComponent extends React.Component{
         showLegend=false,
         yTicks=[y,"%"];
         // var orderData=this.props.orders[0];
-        //   console.log(orderData);   
+        //   console.log(orderData);
+        if(this.props.orders.length)   
             return (
                 
                 <div>
                     <h1 className="text-center">Order Execution Status</h1>
                 <WindowResizeListener onResize={this.changeWidth.bind(this)}/>
                     
-                    <div className="container col-xs-12">
+                    <div className="container col-xs-12 table">
                      <div className="col-md-6 col-xs-12 col-xs-offset-8 col-sm-offset-6">
                     <Legend
                         width= {legendWidth}
@@ -137,6 +138,12 @@ class ChartComponent extends React.Component{
                    
                     </div>
                 </div>
+        )
+        else
+        return(
+            <h1 className="text-center">
+                There is no data to display!
+                </h1>
         )
     }
 };
