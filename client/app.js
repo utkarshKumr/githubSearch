@@ -10,6 +10,7 @@ import Main from './components/Main.component';
 import LoginComponent from './components/login/login';
 import TraderMainComponent from './components/TraderDesktop/main.trader.component';
 import TableComponent from './components/TraderDesktop/table.component';
+import 'react-notifications/lib/notifications.css';
 const store = configureStore();
 //here sending empty initialstates
 render(

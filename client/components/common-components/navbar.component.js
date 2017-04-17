@@ -131,7 +131,7 @@ const style = {
 </Modal> 
                 <RaisedButton label="Delete" onClick={this.deleteOrder.bind(this)} secondary={true} style={style}/>
                 <RaisedButton label="Refresh" style={style} onClick={this.refreshOrders.bind(this)} />
-                <DrawerComponent {...this.props} className="visible-md"/>
+                <DrawerComponent {...this.props} />
                {/* <button className="orderCreation" onClick={this.deleteOrder.bind(this)}><b>Delete All</b></button>
                 <button className="orderCreation" onClick={this.refreshOrders.bind(this)}><b>Refresh</b></button>*/}
                 <span className="pull-right hello">
