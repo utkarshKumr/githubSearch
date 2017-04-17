@@ -68,19 +68,22 @@ createCustomModalHeader(onClose, onSave) {
         checkbox: {
     marginBottom: 16,
   }
+
+  
     }
 
         return (
-           <div >
-               <div className="container">
+           <div className="table container">
+               <div>
                    <TextField style={style}
                             hintText="Search"
                                 onChange={this.search.bind(this)}
                                              />
                </div>                              
-            <div className="col-xs-12 hidden-xs hidden-sm table">
+            <div className="col-xs-12 hidden-xs hidden-sm">
                     <Checkbox label="Notifications" style={style.checkbox} checked={this.props.notification} onClick={this.notify.bind(this)}/>
-              <BootstrapTable data={orders} options={options} striped pagination>
+               <div className="tableInside">     
+              <BootstrapTable data={orders} options={options} hover pagination>
                 <TableHeaderColumn dataField='id' isKey dataAlign="center">ID</TableHeaderColumn>
                 <TableHeaderColumn dataField='creationTime' dataAlign="center">Creation Time</TableHeaderColumn>
                 <TableHeaderColumn dataField='side' dataAlign="center">Side</TableHeaderColumn>
@@ -94,8 +97,10 @@ createCustomModalHeader(onClose, onSave) {
                 <TableHeaderColumn  dataField='traderId' dataAlign="center">Trader</TableHeaderColumn>                                                
             </BootstrapTable>
             </div>
+            </div>
 
                <div className="col-xs-12 visible-xs">
+                    <Checkbox label="Notifications" style={style.checkbox} checked={this.props.notification} onClick={this.notify.bind(this)}/>
               <BootstrapTable data={orders} options={options}  striped hover pagination>
                 <TableHeaderColumn width='50' dataField='id' isKey dataAlign="center">ID</TableHeaderColumn>
               
@@ -109,6 +114,7 @@ createCustomModalHeader(onClose, onSave) {
             </div>
 
                 <div className="col-xs-12 visible-sm">
+                     <Checkbox label="Notifications" style={style.checkbox} checked={this.props.notification} onClick={this.notify.bind(this)}/>
               <BootstrapTable data={orders} options={options}  striped hover pagination>
                 <TableHeaderColumn dataField='id' isKey dataAlign="center">ID</TableHeaderColumn>
                 <TableHeaderColumn dataField='creationTime' dataAlign="center">Creation Time</TableHeaderColumn>

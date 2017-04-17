@@ -99,10 +99,10 @@ class ChartComponent extends React.Component{
             return (
                 
                 <div>
-                    <h1 className="text-center">Order Execution Status</h1>
+                    <h1 className="text-center fontColor">Order Execution Status</h1>
                 <WindowResizeListener onResize={this.changeWidth.bind(this)}/>
                     
-                    <div className="container col-xs-12 table">
+                    <div className="container col-xs-12 chart">
                      <div className="col-md-6 col-xs-12 col-xs-offset-8 col-sm-offset-6">
                     <Legend
                         width= {legendWidth}
@@ -141,9 +141,10 @@ class ChartComponent extends React.Component{
         )
         else
         return(
+            <div className="backgroundColor">
             <h1 className="text-center">
                 There is no data to display!
-                </h1>
+                </h1></div>
         )
     }
 };

@@ -8,7 +8,7 @@ class Main extends React.Component{
 
     render(){
         return (
-              <MuiThemeProvider>
+              <MuiThemeProvider muiTheme={getMuiTheme(darkBaseTheme)}>
         <div>
            
             {React.cloneElement(this.props.children,this.props)}

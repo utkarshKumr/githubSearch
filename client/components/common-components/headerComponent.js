@@ -7,6 +7,7 @@ import Badge from 'material-ui/Badge';
 import IconButton from 'material-ui/IconButton';
 import NotificationsIcon from 'material-ui/svg-icons/social/notifications';
 import * as firebase from 'firebase';
+import FlatButton from 'material-ui/FlatButton';
 
 class HeaderComponent extends React.Component {
     constructor(props) {
@@ -51,13 +52,13 @@ class HeaderComponent extends React.Component {
 
             <div className="header container-fluid">
                 <div id="headerLine">
-                    <p className="title">Trader Desktop</p>
+                    <p className="title fontColor"><b>Trader Desktop</b></p>
 
                     <span className="pull-right">
 
-                        <p className="username"><i>{localStorage.getItem('user')}</i></p>
+                        <p className="username fontColor"><i>{localStorage.getItem('user')}</i></p>
                         <Link to={`/`} onClick={this.auth.bind(this)}>
-                            <a>Sign Out</a>
+                            <FlatButton label="Sign Out" secondary={true} />
                         </Link>
                     </span>
                 </div>

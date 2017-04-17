@@ -43,8 +43,8 @@ export default class DrawerComponent extends React.Component {
     };
 
     const drawerStyle = {
-      width: "30%",
-      backgroundColor: "#EEEEEE"
+      width: "30%"
+      //backgroundColor: "#EEEEEE"
     }
     const buttonStyle = {
       marginTop: 23,
@@ -65,10 +65,10 @@ export default class DrawerComponent extends React.Component {
 
     var messages = this.props.nMessage.map((item, index) => {
       if(this.state.searchInput && item.mess.toUpperCase().search(this.state.searchInput.toUpperCase())>=0)
-        return (<div className={item.color}><MenuItem className="bg-info" onClick={this.handleClose.bind(this)} > <b>{item.mess}</b><p className="text-right menuItem">{item.date}</p>
+        return (<div ><MenuItem className="bg-info" onClick={this.handleClose.bind(this)} > <b>{item.mess}</b><p className="text-right menuItem">{item.date}</p>
         </MenuItem><Divider /></div>)
         else if(this.state.searchInput.length === 0)
-      return (<div className={item.color}><MenuItem className="bg-info" onClick={this.handleClose.bind(this)} ><b> {item.mess}</b><p className="text-right menuItem">{item.date}</p>
+      return (<div ><MenuItem className="bg-info" onClick={this.handleClose.bind(this)} ><b> {item.mess}</b><p className="text-right menuItem">{item.date}</p>
         </MenuItem><Divider /></div>)
     })
     return (
