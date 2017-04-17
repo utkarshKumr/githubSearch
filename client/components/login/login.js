@@ -2,6 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import {Link} from 'react-router';
 import cookie from 'react-cookie';
+import * as firebase from 'firebase';
+import {browserHistory} from 'react-router';
 
 class LoginComponent extends React.Component{
 constructor(props)
@@ -32,9 +34,36 @@ constructor(props)
         this.props.userName(user);
     }
 
-    auth(){
-        cookie.save('id', this.state.id, { path: '/' });
+    // auth(){
+    //     cookie.save('id', this.state.id, { path: '/' });
+    // }
+       firebaseAuth(){
+        
+        console.log('firebaseAuth called');
+        var name=this.state.name;
+        var id=this.state.id;
+        var removeSpace=new RegExp(' ','g');
+
+        var email=id.toLowerCase().concat('@gmail.com');
+        var password=name.replace(removeSpace,'').toLowerCase();
+        console.log(email,password);
+
+        firebase.auth().signInWithEmailAndPassword(email, password)
+            .then(()=>{
+                console.log('authenticated');
+                cookie.save('id', this.state.id, { path: '/' });
+                console.log(this.state.id);
+                browserHistory.push(`/view/${this.state.id}`);
+            })
+            .catch(function(error) {
+            // Handle Errors here.
+            var errorCode = error.code;
+            var errorMessage = error.message;
+            // ...
+        });
     }
+
+
     render(){
         return (
         
@@ -52,9 +81,10 @@ constructor(props)
             <br/>
            
             <div className="col-xs-12  col-sm-4 col-md-4">
-            <Link to={`/view/${this.state.id}`} onClick={this.auth.bind(this)}>
+            {/*<Link to={`/view/${this.state.id}`} onClick={this.auth.bind(this)}>
             <input type="button" className="btn btn-primary  pull-right" value="Login"></input>
-            </Link>
+            </Link>*/}
+            <input type="button" className="btn btn-primary  pull-right" onClick={this.firebaseAuth.bind(this)} value="Login"></input>
             </div>
         </div>)
     }

@@ -10,7 +10,20 @@ import Main from './components/Main.component';
 import LoginComponent from './components/login/login';
 import TraderMainComponent from './components/TraderDesktop/main.trader.component';
 import TableComponent from './components/TraderDesktop/table.component';
-import 'react-notifications/lib/notifications.css';
+import * as firebase from 'firebase';
+
+
+
+  // Initialize Firebase
+  var config = {
+    apiKey: "AIzaSyAJTGYujHwuXt29bAikG8IPJlBEmSPcdhw",
+    authDomain: "mock-project-99058.firebaseapp.com",
+    databaseURL: "https://mock-project-99058.firebaseio.com",
+    projectId: "mock-project-99058",
+    storageBucket: "mock-project-99058.appspot.com",
+    messagingSenderId: "1081845841143"
+  };
+  firebase.initializeApp(config);
 const store = configureStore();
 //here sending empty initialstates
 render(

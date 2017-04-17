@@ -28,16 +28,29 @@ export default class DrawerComponent extends React.Component {
 const drawerStyle={
     width:"50%"
 }
+const buttonStyle={
+    padding:0,
+    height:25
+}
 
 var messages=this.props.nMessage.map((item)=>{
     return(<MenuItem>{item}</MenuItem> )
 })
     return (
       <span className="hidden-xs">
-        <RaisedButton style={style}
+        {/*<RaisedButton style={style}
           label="Toggle"
           onClick={this.handleToggle.bind(this)}
-        />
+        />*/}
+            <Badge
+      badgeContent={this.props.nMessage.length}
+      secondary={true}
+      badgeStyle={{top: 12, right: 12}}
+    >
+      <IconButton tooltip="Notifications" style={buttonStyle} onClick={this.handleToggle.bind(this)}>
+        <NotificationsIcon />
+      </IconButton>
+      </Badge>
         <Drawer open={this.state.open} style={drawerStyle} width={500}>
             <MenuItem onClick={this.handleToggle.bind(this)}><pre>Close         </pre></MenuItem> 
           {messages}
