@@ -160,10 +160,16 @@ export function notify(){
     }
 }
 
-export function notifyMessage(msg){
+export function notifyMessage(msgObj){
     return{
         type:'NOTIFICATION_MESSAGE',
-        msg
+        msgObj
+    }
+}
+
+export function clearNotifications(){
+    return{
+        type:"CLEAR_NOTIFICATIONS"
     }
 }
 

@@ -8,7 +8,8 @@ import { getTraders,
     deleteOrders,
     updateOrderSocket,
     notify,
-    notifyMessage } from '../actions/items';
+    notifyMessage,
+    clearNotifications } from '../actions/items';
 import Main from './Main.component';
 
   const mapStateToProps = (state) => {
@@ -34,7 +35,8 @@ const mapDispatchToProps = (dispatch) => {
             deleteOrders: (url) => dispatch(deleteOrders(url)),
             updateOrderSocket:(msg,data)=>dispatch(updateOrderSocket(msg,data)),
             notify:()=>dispatch(notify()),
-            notifyMessage:(msg)=>dispatch(notifyMessage(msg))
+            notifyMessage:(msgObj)=>dispatch(notifyMessage(msgObj)),
+            clearNotifications:()=>dispatch(clearNotifications())
         };
     }
     var App=connect(mapStateToProps, mapDispatchToProps)(Main);

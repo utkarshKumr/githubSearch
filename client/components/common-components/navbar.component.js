@@ -108,7 +108,7 @@ const style = {
      
         return (
           
-            <div>
+            <div className="navDiv">
                 {/*<button className="orderCreation" onClick={this.openModal.bind(this)}><b>Trade</b></button>*/}
                 <RaisedButton label="Trade" primary={true} style={style} onClick={this.openModal.bind(this)}/>
         <Modal isOpen={this.state.isOpen} onRequestHide={this.hideModal.bind(this)}>

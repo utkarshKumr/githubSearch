@@ -83,7 +83,9 @@ export function notification(state=1,action){
 export function nMessage(state=[],action){
     switch(action.type){
         case 'NOTIFICATION_MESSAGE':
-            return [action.msg,...state];
+            return [action.msgObj,...state];
+        case 'CLEAR_NOTIFICATIONS':
+            return [];    
         default:
             return state;    
     }

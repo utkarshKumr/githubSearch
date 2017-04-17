@@ -20,7 +20,7 @@ class TraderMainComponent extends React.Component {
             console.log("deleted");
             if (this.props.notification)
                 NotificationManager.error('All trades Deleted!', 'Deleted', 3000);
-            this.props.notifyMessage('All trades Deleted');
+            this.props.notifyMessage({mess:'All trades Deleted',date:Date()});
         }
 
         else if (data[1].status === 'Executed' || data[0]==='executionCreatedEvent') {
@@ -38,7 +38,7 @@ class TraderMainComponent extends React.Component {
                 }
             if (this.props.notification && data[1].status === 'Executed')
                 NotificationManager.success(mess1, 'Executed!', 10000);
-            this.props.notifyMessage(mess2);
+            this.props.notifyMessage({mess:mess2,date:Date()});
         }
         else if (data[1].status === 'Placed' || data[0]==='placementCreatedEvent') {
             var mess1,mess2;
@@ -54,7 +54,7 @@ class TraderMainComponent extends React.Component {
                 }
             if (this.props.notification && data[1].status === 'Placed')
                 NotificationManager.info(mess1, 'Placed!', 5000);
-            this.props.notifyMessage(mess2);
+            this.props.notifyMessage({mess:mess2,date:Date()});
         }
     }
 

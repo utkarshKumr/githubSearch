@@ -6,53 +6,92 @@ import RaisedButton from 'material-ui/RaisedButton';
 import Badge from 'material-ui/Badge';
 import IconButton from 'material-ui/IconButton';
 import NotificationsIcon from 'material-ui/svg-icons/social/notifications';
+import FlatButton from 'material-ui/FlatButton';
+import TextField from 'material-ui/TextField';
 
 export default class DrawerComponent extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = {open: false};
+    this.state = { 
+      open: false,
+      searchInput: ''
+     };
   }
 
-  handleToggle(){this.setState({open: !this.state.open})};
+  handleToggle() { this.setState({ open: !this.state.open }) };
 
+  handleClose() { this.setState({ open: false }) };
 
+  handleClear() {
+    this.props.clearNotifications();
+  }
 
+      search(event) {
+        this.setState({ searchInput: event.target.value })
+    }
   render() {
-        const style = {
-  margin:5,
-      width:90,
-    height:25,
-};
+    const style = {
+      fontsize: 10,
+      width: 20,
+      height: 20,
+      padding: 0,
+      margin: 5,
+      left: -28,
 
-const drawerStyle={
-    width:"50%"
-}
-const buttonStyle={
-    padding:0,
-    height:25
-}
+    };
 
-var messages=this.props.nMessage.map((item)=>{
-    return(<MenuItem>{item}</MenuItem> )
-})
+    const drawerStyle = {
+      width: "40%",
+      backgroundColor: "#EEEEEE"
+    }
+    const buttonStyle = {
+      marginTop: 23,
+      padding: 0,
+      height: 25
+    }
+
+    const clearButton = {
+      backgroundColor: "#EF5350"
+    }
+    const closeButton = {
+      backgroundColor: "#9E9E9E"
+    }
+
+
+    var messages = this.props.nMessage.map((item, index) => {
+      if(this.state.searchInput && item.mess.toUpperCase().search(this.state.searchInput.toUpperCase())>=0)
+        return (<MenuItem>{item.date}<br />
+        <b>{item.mess}</b></MenuItem>)
+        else if(this.state.searchInput.length === 0)
+      return (<MenuItem>{item.date}<br />
+        <b>{item.mess}</b></MenuItem>)
+    })
     return (
-      <span className="hidden-xs">
+      <span>
         {/*<RaisedButton style={style}
           label="Toggle"
           onClick={this.handleToggle.bind(this)}
         />*/}
-            <Badge
-      badgeContent={this.props.nMessage.length}
-      secondary={true}
-      badgeStyle={{top: 12, right: 12}}
-    >
-      <IconButton tooltip="Notifications" style={buttonStyle} onClick={this.handleToggle.bind(this)}>
-        <NotificationsIcon />
-      </IconButton>
-      </Badge>
-        <Drawer open={this.state.open} style={drawerStyle} width={500}>
-            <MenuItem onClick={this.handleToggle.bind(this)}><pre>Close         </pre></MenuItem> 
+
+
+
+        <IconButton tooltip="Notifications" style={buttonStyle} onClick={this.handleToggle.bind(this)}>
+          <NotificationsIcon />
+        </IconButton>
+        <Badge
+          badgeContent={this.props.nMessage.length}
+          secondary={true}
+          badgeStyle={style}
+        ></Badge>
+
+        <Drawer open={this.state.open} containerStyle={drawerStyle} width={500} docked={false}
+          onRequestChange={(open) => this.setState({ open })}>
+          <FlatButton label="Close" style={closeButton} fullWidth={true} onClick={this.handleClose.bind(this)} />
+          <FlatButton label="Clear" style={clearButton} fullWidth={true} onClick={this.handleClear.bind(this)} />
+          <TextField
+            hintText="Search" onChange={this.search.bind(this)} fullWidth={true}
+          />
           {messages}
         </Drawer>
       </span>
