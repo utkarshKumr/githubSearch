@@ -11,6 +11,7 @@ import LoginComponent from './components/login/login';
 import TraderMainComponent from './components/TraderDesktop/main.trader.component';
 import TableComponent from './components/TraderDesktop/table.component';
 import * as firebase from 'firebase';
+var injectTapEventPlugin = require("react-tap-event-plugin");
 
 
 
@@ -25,6 +26,8 @@ import * as firebase from 'firebase';
   };
   firebase.initializeApp(config);
 const store = configureStore();
+injectTapEventPlugin();
+
 //here sending empty initialstates
 render(
     <Provider store={store}>
@@ -32,7 +35,7 @@ render(
             <Route path="/" component={App}>
                 <IndexRoute component={LoginComponent}/>
                 <Route path="/view/:id" component={TraderMainComponent}>
-                </Route>        
+                </Route>
             </Route>
     </Router>
     </Provider>,
