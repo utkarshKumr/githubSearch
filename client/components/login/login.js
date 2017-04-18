@@ -10,7 +10,7 @@ import MenuItem from 'material-ui/MenuItem';
 import SelectField from 'material-ui/SelectField';
 import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
-
+import * as links from '../common-components/app.config';
 class LoginComponent extends React.Component{
 
 constructor(props)
@@ -27,7 +27,7 @@ constructor(props)
 }
 
     componentDidMount(){
-        this.props.getTraders("http://localhost:8080/users");
+        this.props.getTraders(links.users);
     }
     handleChange(event, index,value) {
       console.log("ri");

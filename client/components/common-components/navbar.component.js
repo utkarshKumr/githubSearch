@@ -9,6 +9,7 @@ import DrawerComponent from './drawer.component';
 import Popover from 'material-ui/Popover';
 import Menu from 'material-ui/Menu';
 import MenuItem from 'material-ui/MenuItem';
+import * as links from './app.config'
 import { NotificationContainer, NotificationManager } from 'react-notifications';
 import {
   Modal,
@@ -57,7 +58,8 @@ class NavigationComponent extends React.Component {
   };
   componentDidMount() {
     console.log("inside did mount")
-    this.props.getStocks("http://localhost:8080/instruments");
+    this.props.getStocks(links.shares);
+
   }
   changeView(value) {
     this.props.changeView(!this.props.view);
@@ -78,14 +80,14 @@ class NavigationComponent extends React.Component {
 
   deleteOrder() {
     this.handleRequestClose();
-    this.props.deleteOrders("http://localhost:8080/orders")
+    this.props.deleteOrders(links.orders)
     
   }
 
 
   refreshOrders() {
     this.handleRequestClose();
-    this.props.getOrders("http://localhost:8080/orders");
+    this.props.getOrders(links.orders);
   }
   createOrder() {
     let orderSize = ReactDOM.findDOMNode(this.refs.orderNumber).value;
@@ -114,7 +116,7 @@ class NavigationComponent extends React.Component {
       }
       data.quantity = Math.ceil(Math.random() * 200);
       data.limitPrice = Math.ceil(Math.random() * 100);
-      this.props.getTraders("http://localhost:8080/orders", data)
+      this.props.getTraders(links.orders, data)
     }
     this.setState({ isOpen: false });
   }

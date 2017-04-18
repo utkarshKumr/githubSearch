@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import {BootstrapTable,TableHeaderColumn} from 'react-bootstrap-table';
 import TextField from 'material-ui/TextField';
 import Checkbox from 'material-ui/Checkbox';
+import * as links from '../common-components/app.config';
 
 class TableComponent extends React.Component{
     constructor(props){
@@ -14,7 +15,7 @@ class TableComponent extends React.Component{
 
 
     componentDidMount(){
-        this.props.getOrders("http://localhost:8080/orders");
+        this.props.getOrders(links.orders);
     }
     priceFormatter(cell, row) {
         return `<i class='glyphicon glyphicon-usd'></i> ${cell}`;

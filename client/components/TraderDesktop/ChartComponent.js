@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { WindowResizeListener } from 'react-window-resize-listener';
-
+import * as links from '../common-components/app.config'
 var BarStackHorizontalChart = require('react-d3-basic').BarStackHorizontalChart;
 var Legend = require('react-d3-core').Legend;
 
@@ -13,7 +13,7 @@ class ChartComponent extends React.Component{
         this.legendWidth;
     }
     componentDidMount(){
-        this.props.getOrders("http://localhost:8080/orders");
+        this.props.getOrders(links.orders);
     }
 
 

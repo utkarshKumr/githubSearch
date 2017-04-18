@@ -109,26 +109,6 @@ constructor(props) {
         else if (this.props.view == 0) {
             view = <ChartComponent {...this.props} />;
         }
-
-
-
-        /*if (this.props.params.id === cookie.load('id'))
-            return (
-                <div className="Trader">
-                    <HeaderComponent {...this.props} />
-                    {view}
-                    <Websocket url='ws://localhost:8080/socket.io/?transport=websocket'
-                        onMessage={this.handleData.bind(this)} />
-                    <NotificationContainer />
-                </div>
-
-            )
-        else
-            return (
-                <div>
-                    <h1>Session Expired!</h1>
-                </div>
-            )*/
             if (this.state.loggedIn && this.props.params.id === this.state.id)
             return (
                 <div className="Trader">
