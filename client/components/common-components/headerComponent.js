@@ -20,7 +20,6 @@ class HeaderComponent extends React.Component {
                 firebase.auth().signOut()
             .then(()=>{
                 console.log('sign out successful');
-                cookie.remove('id',{ path: '/' });
                 localStorage.removeItem('user');
             })
             .catch(function(error) {
