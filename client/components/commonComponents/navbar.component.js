@@ -113,7 +113,7 @@ class NavigationComponent extends React.Component {
       else {
         data.side = "sell"
       }
-      data.quantity = Math.ceil(Math.random() * 200);
+      data.quantity = Math.ceil(Math.random() * 100);
       data.limitPrice = Math.ceil(Math.random() * 100);
       this.props.getTraders(links.orders, data)
     }
