@@ -68,8 +68,8 @@ class TraderMainComponent extends React.Component {
             this.props.setMap(data[0] + "_map", data[1]);
         }
 
-        if (this.props.notification && data[1].status === 'Executed') {
-            mess1 = `ID: ${data[1].orderId},
+        else if (this.props.notification && data[1].status === 'Executed') {
+            var mess1 = `ID: ${data[1].orderId},
                 Trader:${this.props.getMap.get(data[1].orderId).traderId},
                 Stock: ${this.props.getMap.get(data[1].orderId).symbol}`;
 
@@ -77,7 +77,8 @@ class TraderMainComponent extends React.Component {
             NotificationManager.success(mess1, 'Executed!', 3000);
         }
 
-        else if (data[1].quantityExecuted > 5 || data[1].quantityPlaced > 5) {
+
+        else if (data[1].quantityExecuted > 8 || data[1].quantityPlaced > 8) {
             if (data[0] === 'executionCreatedEvent') {
                 var mess1, mess2;
                 mess2 = `${data[1].quantityExecuted} stocks of ${this.props.getMap.get(data[1].orderId).symbol} 

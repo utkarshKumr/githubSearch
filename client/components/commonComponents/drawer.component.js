@@ -43,7 +43,7 @@ export default class DrawerComponent extends React.Component {
     };
 
     const drawerStyle = {
-      width: "30%"
+      width: "40%"
     }
     const buttonStyle = {
       marginTop: 23,
