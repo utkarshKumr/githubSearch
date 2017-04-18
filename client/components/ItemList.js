@@ -9,7 +9,8 @@ import { getTraders,
     updateOrderSocket,
     notify,
     notifyMessage,
-    clearNotifications } from '../actions/items';
+    clearNotifications,
+    setMap } from '../actions/items';
 import Main from './Main.component';
 
   const mapStateToProps = (state) => {
@@ -21,7 +22,8 @@ import Main from './Main.component';
             view:state.setView,
             ordersLeft : state.deleteItems,
             notification:state.notification,
-            nMessage:state.nMessage
+            nMessage:state.nMessage,
+            getMap:state.setMap
         };
     }
 
@@ -36,7 +38,9 @@ const mapDispatchToProps = (dispatch) => {
             updateOrderSocket:(msg,data)=>dispatch(updateOrderSocket(msg,data)),
             notify:()=>dispatch(notify()),
             notifyMessage:(msgObj)=>dispatch(notifyMessage(msgObj)),
-            clearNotifications:()=>dispatch(clearNotifications())
+            clearNotifications:()=>dispatch(clearNotifications()),
+            setMap:(msg,data)=>dispatch(setMap(msg,data))
+            
         };
     }
     var App=connect(mapStateToProps, mapDispatchToProps)(Main);

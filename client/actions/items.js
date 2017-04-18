@@ -32,14 +32,24 @@ export function traderFetchDataSuccess(traders) {
 export function stockFetchDataSuccess(items) {
     return {
         type: 'STOCKS_FETCH_DATA_SUCCESS',
+        
         items
     };
 }
 
 export function ordersFetchDataSuccess(orders) {
+    console.log(orders);
     return {
         type: 'ORDERS_FETCH_DATA_SUCCESS',
         orders
+    };
+}
+
+export function setMap(type,items){
+    console.log(items);
+    return{
+        type,
+        items
     };
 }
 
@@ -133,8 +143,16 @@ export function getOrders(url) {
 			responseType: 'json'
 		})
 			.then(function(response) {
+                console.log('inseide getorders')
+               dispatch(setMap("SET_MAP",response.data));
+                
 				dispatch(ordersFetchDataSuccess(response.data));
 			})
+            // .then(function(response){
+            //     console.log("response",response.data);
+                
+            //         dispatch(setMap(response.data));
+            // })
 			.catch(function(response){
 				dispatch(itemsHasErrored(false));
         })}

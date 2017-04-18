@@ -10,6 +10,28 @@ export function traderItems(state = [], action) {
     }
 }
 
+export function setMap(state=new Map(),action){
+    switch(action.type){
+        case 'SET_MAP':
+            var map=new Map();
+            for(let item of action.items)
+            {
+                map.set(item.id,{symbol:item.symbol,traderId:item.traderId});
+            }
+            return map;
+        case 'orderCreatedEvent_map':
+            state.set(action.items.id,{symbol:action.items.symbol,traderId:action.items.traderId});
+            return state;
+        case 'allOrdersDeletedEvent_map':
+            return state.clear();       
+        default:
+          return state;    
+    }
+  
+    console.log(action.type);
+    return state;
+}
+
 export function stockItems(state = [], action) {
     switch (action.type) {
         case 'STOCKS_FETCH_DATA_SUCCESS':
@@ -34,6 +56,7 @@ export function orders(state=[],action){
         case 'ORDERS_FETCH_DATA_SUCCESS':
             return action.orders;
         case 'orderCreatedEvent':
+            console.log("orderCreatedEvent",action.data);
             return [action.data,...state];
         case 'allOrdersDeletedEvent':
             return [];
@@ -41,11 +64,9 @@ export function orders(state=[],action){
             for(let i=0;i<state.length;i++)
                 if(state[i].id === action.data.orderId )
                 {
-                    console.log("found");
                     state[i].quantityPlaced+=action.data.quantityPlaced;
                     state[i].status=action.data.status;
             }
-            console.log("aknxdax:",state);
             return [...state];
         case 'executionCreatedEvent':
             for(let i=0;i<state.length;i++)
