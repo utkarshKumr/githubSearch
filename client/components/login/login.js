@@ -70,13 +70,13 @@ constructor(props)
         var removeSpace=new RegExp(' ','g');
 
         var email=id.toLowerCase().concat('@gmail.com');
-        var password=name.replace(removeSpace,'').toLowerCase();
+        var password=this.refs.password.getValue();//name.replace(removeSpace,'').toLowerCase();
         console.log(email,password);
 
         firebase.auth().signInWithEmailAndPassword(email, password)
             .then(()=>{
                 console.log('authenticated');
-                cookie.save('id', this.state.id, { path: '/' });
+                //cookie.save('id', this.state.id, { path: '/' });
                 console.log(this.state.id);
                 browserHistory.push(`/view/${this.state.id}`);
             })
@@ -136,7 +136,7 @@ constructor(props)
             <MenuItem value={item.id} key={index} primaryText={item.name}/>
             )}
             </SelectField>
-            <TextField hintText="Password Field" floatingLabelText="Password" type="password"/>
+            <TextField hintText="Password Field" floatingLabelText="Password" ref="password" type="password"/>
             <br/>
             {/*<Link to={`/view/${this.state.id}`} onClick={this.auth.bind(this)}>
             <input type="button" className="btn btn-primary  pull-right" value="Login"></input>

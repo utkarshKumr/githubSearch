@@ -7,8 +7,51 @@ import ChartComponent from './ChartComponent';
 import Websocket from 'react-websocket';
 import cookie from 'react-cookie';
 import { NotificationContainer, NotificationManager } from 'react-notifications';
-
+import * as firebase from 'firebase';
 class TraderMainComponent extends React.Component {
+constructor(props) {
+        super(props);
+        this.state = {
+            loggedIn: false,
+            id: 'AM',
+            expired:"yes"    
+        }
+    }
+    componentWillMount() {
+        this.getUser();
+    }
+    getUser() {
+        firebase.auth().onAuthStateChanged((user) => {
+            if (user) {
+                // User is signed in.
+                var username = user.email.toUpperCase().slice(0, 2);
+                console.log("users", username);
+               
+                if(this.props.params.id===username){
+                    this.setState({
+                   loggedIn: true,
+                    id: username,
+                    expired:"no"
+                });
+                }
+                else{
+                    this.setState({
+                    loggedIn: true,
+                    id: username,
+                    expired:"yes"
+                });
+                }
+            } else {
+                this.setState({ loggedIn: false,
+                    expired:"yes"
+                    });
+            }
+        });
+    };
+
+
+
+
     handleData(data) {
         var date=new Date();
         data = data.substring(2, data.length);
@@ -69,7 +112,7 @@ class TraderMainComponent extends React.Component {
 
 
 
-        if (this.props.params.id === cookie.load('id'))
+        /*if (this.props.params.id === cookie.load('id'))
             return (
                 <div className="Trader">
                     <HeaderComponent {...this.props} />
@@ -85,7 +128,31 @@ class TraderMainComponent extends React.Component {
                 <div>
                     <h1>Session Expired!</h1>
                 </div>
+            )*/
+            if (this.state.loggedIn && this.props.params.id === this.state.id)
+            return (
+                <div className="Trader">
+                    <HeaderComponent {...this.props} />
+                    {view}
+                    <Websocket url='ws://localhost:8080/socket.io/?transport=websocket'
+                        onMessage={this.handleData.bind(this)} />
+                    <NotificationContainer />
+                </div>
+ 
             )
+        else if(this.state.expired==="yes" && this.state.loggedIn){
+             return (<div>
+                    <h1 className="fontColor">Session Expired!</h1>
+                </div>)
+        }
+        else {
+                           console.log(this.state.expired);
+            
+        return(
+            <h1 className="fontColor">Loading...</h1>
+        )
+       
+        }
     }
 };
 
