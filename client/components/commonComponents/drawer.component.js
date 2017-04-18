@@ -44,7 +44,6 @@ export default class DrawerComponent extends React.Component {
 
     const drawerStyle = {
       width: "30%"
-      //backgroundColor: "#EEEEEE"
     }
     const buttonStyle = {
       marginTop: 23,
@@ -73,13 +72,6 @@ export default class DrawerComponent extends React.Component {
     })
     return (
       <span className="hidden-xs">
-        {/*<RaisedButton style={style}
-          label="Toggle"
-          onClick={this.handleToggle.bind(this)}
-        />*/}
-
-
-
         <IconButton tooltip="Notifications" style={buttonStyle} onClick={this.handleToggle.bind(this)}>
           <NotificationsIcon />
         </IconButton>

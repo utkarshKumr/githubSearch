@@ -42,7 +42,6 @@ class NavigationComponent extends React.Component {
 
 
     handleTouchTap(event){
-    // This prevents ghost click.
     event.preventDefault();
 
     this.setState({
@@ -135,7 +134,6 @@ class NavigationComponent extends React.Component {
     return (
 
       <div className="navDiv">
-        {/*<button className="orderCreation" onClick={this.openModal.bind(this)}><b>Trade</b></button>*/}
         <RaisedButton label="Trade" className="hidden-xs" primary={true} style={style} onClick={this.openModal.bind(this)} />
         <Modal isOpen={this.state.isOpen} onRequestHide={this.hideModal.bind(this)}>
           <ModalHeader>
@@ -158,8 +156,6 @@ class NavigationComponent extends React.Component {
         <RaisedButton label="Delete" className="hidden-xs " onClick={this.deleteOrder.bind(this)} secondary={true} style={style} />
         <RaisedButton label="Refresh" className="hidden-xs" style={style} onClick={this.refreshOrders.bind(this)} />
         <DrawerComponent {...this.props} />
-        {/* <button className="orderCreation" onClick={this.deleteOrder.bind(this)}><b>Delete All</b></button>
-                <button className="orderCreation" onClick={this.refreshOrders.bind(this)}><b>Refresh</b></button>*/}
         <span className="pull-right hello hidden-xs">
           <button className={(this.props.view) ? "iconsSelected" : "icons"} onClick={this.changeView.bind(this, 1)}><i className={(this.props.view) ? "fa fa-table imgSelectedColor" : "fa fa-table"}></i></button>
           <button className={(this.props.view) ? "icons" : "iconsSelected"} onClick={this.changeView.bind(this, 0)}><i className={(this.props.view) ? "fa fa-bar-chart" : "fa fa-bar-chart imgSelectedColor"}></i></button>

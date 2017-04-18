@@ -1,9 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Link } from 'react-router';
-import HeaderComponent from '../common-components/headerComponent';
+import HeaderComponent from '../commonComponents/headerComponent';
 import TableComponent from './table.component';
-import ChartComponent from './ChartComponent';
+import ChartComponent from './chartComponent';
 import Websocket from 'react-websocket';
 import cookie from 'react-cookie';
 import { NotificationContainer, NotificationManager } from 'react-notifications';
@@ -23,7 +23,6 @@ constructor(props) {
     getUser() {
         firebase.auth().onAuthStateChanged((user) => {
             if (user) {
-                // User is signed in.
                 var username = user.email.toUpperCase().slice(0, 2);
                 console.log("users", username);
                
@@ -57,12 +56,9 @@ constructor(props) {
         data = data.substring(2, data.length);
         data = JSON.parse(data);
         this.props.updateOrderSocket(data[0], data[1]);
-        // if(data[0] === 'orderCreatedEvent' || data[0]==='allOrdersDeletedEvent')
-        // this.props.setMap(data[0]+"_map",data[1]);
         
 
         if(data[0] === 'orderCreatedEvent' || data[0]==='allOrdersDeletedEvent'){
-            console.log("deleted");
             if(data[0]==='allOrdersDeletedEvent')
             {
             if (this.props.notification)
@@ -126,7 +122,6 @@ constructor(props) {
                 </div>)
         }
         else {
-                           console.log(this.state.expired);
             
         return(
             <h1 className="fontColor">Loading...</h1>

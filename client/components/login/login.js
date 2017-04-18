@@ -10,7 +10,7 @@ import MenuItem from 'material-ui/MenuItem';
 import SelectField from 'material-ui/SelectField';
 import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
-import * as links from '../common-components/app.config';
+import * as links from '../commonComponents/app.config';
 import CircularProgress from 'material-ui/CircularProgress';
 class LoginComponent extends React.Component{
 
@@ -49,49 +49,25 @@ constructor(props)
       })
           this.props.userName(user);
     }
-    // traderLogin(){
-    //   console.log(ReactDOM.findDOMNode(this.refs.traderName).value);
-    //     let user=ReactDOM.findDOMNode(this.refs.traderName).value;
-    //     var id;
-    // this.props.traders.map((item)=>{
-    //     if(user===item.name)
-    //     {
-    //      this.setState({id:item.id,name:item.name});
-    //      id=item.id;
-    //     }
-    // })
-    //     this.props.userName(user);
-    // }
-
-    // auth(){
-    //     cookie.save('id', this.state.id, { path: '/' });
-    // }
        firebaseAuth(){
          this.setState({view:1});
          this.setState({noview:1});
 
-        console.log('firebaseAuth called');
         var name=this.state.name;
         var id=this.state.id;
         var removeSpace=new RegExp(' ','g');
         var email=id.toLowerCase().concat('@gmail.com');
         var password=this.refs.password.getValue();
-        console.log(email,password);
         firebase.auth().signInWithEmailAndPassword(email, password)
             .then(()=>{
-                console.log('authenticated');
-                //cookie.save('id', this.state.id, { path: '/' });
-                console.log(this.state.id);
                 browserHistory.push(`/view/${this.state.id}`);
             })
 
             .catch((error)=> {
-            // Handle Errors here.
             this.setState({view:0});
             this.setState({errorText:"Enter Valid Password"});
             var errorCode = error.code;
             var errorMessage = error.message;
-            // ...
         });
 
   }
@@ -102,16 +78,13 @@ constructor(props)
       if(this.state.noview==1)
       {
       if (this.state.view == 1) {
-        console.log(this.state.view);
+
         document.getElementById("progressBar").style.visibility = "visible";
         document.getElementById("poweredBar").style.marginTop = "48px";
         document.getElementById("poweredBar").style.height = "11%";
       }
       else if (this.state.view == 0) {
-            console.log(this.state.view);
-            console.log(document.getElementById("progressBar"));
           document.getElementById("progressBar").style.visibility = "hidden";
-          console.log(document.getElementById("progressBar"));
     }
 }
       const style = {
@@ -174,9 +147,6 @@ constructor(props)
             </SelectField><br/>
             <TextField hintText="Password Field" errorText={this.state.errorText} floatingLabelText="Password" ref='password' type="password"/>
             <br/>
-            {/*<Link to={`/view/${this.state.id}`} onClick={this.auth.bind(this)}>
-            <input type="button" className="btn btn-primary  pull-right" value="Login"></input>
-            </Link>*/}
             <RaisedButton label="Login" primary={true} style={styles}  onClick={this.firebaseAuth.bind(this)}/>
             </form>
             <CircularProgress style={pstyle} id="progressBar"/>
