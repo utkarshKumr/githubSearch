@@ -22,7 +22,6 @@ export function itemsFetchDataSuccess(items) {
 }
 
 export function traderFetchDataSuccess(traders) {
-    //console.log(items);
     return {
         type: 'TRADERS_FETCH_DATA_SUCCESS',
         traders
@@ -38,7 +37,6 @@ export function stockFetchDataSuccess(items) {
 }
 
 export function ordersFetchDataSuccess(orders) {
-    console.log(orders);
     return {
         type: 'ORDERS_FETCH_DATA_SUCCESS',
         orders
@@ -66,7 +64,6 @@ export function getStocks(url){
 			})
 			.catch(function(response){
 				dispatch(itemsHasErrored(response.data));
-				// dispatch(pushState(null,'/error'));
         })
       }
 }
@@ -78,14 +75,6 @@ export function deleteOrders(url){
 			method: 'delete',
 			responseType: 'json'
 		})
-		// 	.then(function(response) {
-        //         console.log(response.data);
-		// 		dispatch(deleteDataSuccess(response.data));
-		// 	})
-		// 	.catch(function(response){
-		// 		dispatch(itemsHasErrored(response.data));
-		// 		// dispatch(pushState(null,'/error'));
-        // })
       }
 }
 
@@ -105,7 +94,6 @@ export function getTraders(url,data=undefined) {
 			.catch(function(response){
    
 				dispatch(itemsHasErrored(false));
-				// dispatch(pushState(null,'/error'));
         })}
         else if(!data){
              return axios({
@@ -120,7 +108,6 @@ export function getTraders(url,data=undefined) {
 			})
 			.catch(function(response){
 				dispatch(itemsHasErrored(response.data));
-				// dispatch(pushState(null,'/error'));
         })
         }
 	
@@ -148,11 +135,6 @@ export function getOrders(url) {
                 
 				dispatch(ordersFetchDataSuccess(response.data));
 			})
-            // .then(function(response){
-            //     console.log("response",response.data);
-                
-            //         dispatch(setMap(response.data));
-            // })
 			.catch(function(response){
 				dispatch(itemsHasErrored(false));
         })}
