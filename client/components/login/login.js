@@ -28,7 +28,7 @@ constructor(props)
     this.handleChange = this.handleChange.bind(this);
 
     this.props.userName(this.state.name);
-}
+};   
 
     componentDidMount(){
         this.props.getTraders(links.users);
@@ -72,7 +72,12 @@ constructor(props)
 
   }
 
-
+_handleKeyPress = (e) => {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      this.firebaseAuth();
+    }
+  }
 
     render(){
       if(this.state.noview==1)
@@ -145,7 +150,7 @@ constructor(props)
             <MenuItem value={item.id} key={index} primaryText={item.name}/>
             )}
             </SelectField><br/>
-            <TextField hintText="Password Field" errorText={this.state.errorText} floatingLabelText="Password" ref='password' type="password"/>
+            <TextField hintText="Password Field" errorText={this.state.errorText} floatingLabelText="Password" ref='password' type="password" onKeyPress={this._handleKeyPress}/>
             <br/>
             <RaisedButton label="Login" primary={true} style={styles}  onClick={this.firebaseAuth.bind(this)}/>
             </form>
