@@ -10,7 +10,7 @@ import { getTraders,
     notify,
     notifyMessage,
     clearNotifications,
-    setMap } from '../actions/items';
+    setMap } from '../actions/index';
 import Main from './Main.component';
 
   const mapStateToProps = (state) => {

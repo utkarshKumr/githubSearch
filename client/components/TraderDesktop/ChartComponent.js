@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { WindowResizeListener } from 'react-window-resize-listener';
-import * as links from '../common-components/app.config'
+import * as links from '../commonComponents/app.config'
 var BarStackHorizontalChart = require('react-d3-basic').BarStackHorizontalChart;
 var Legend = require('react-d3-core').Legend;
 
@@ -50,7 +50,6 @@ class ChartComponent extends React.Component{
             var Placed=(qplaced/item.quantity);
             var Total=1-Executed-Placed;
             data.push({id,Executed,Placed,Total});
-            console.log(id,Total,Executed,Placed);
             height+=50;
             count++;
         });
@@ -93,8 +92,6 @@ class ChartComponent extends React.Component{
         xTicks=[2,"%"],
         showLegend=false,
         yTicks=[y,"%"];
-        // var orderData=this.props.orders[0];
-        //   console.log(orderData);
         if(this.props.orders.length)   
             return (
                 

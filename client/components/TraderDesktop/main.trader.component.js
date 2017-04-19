@@ -1,20 +1,20 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Link } from 'react-router';
-import HeaderComponent from '../common-components/headerComponent';
+import HeaderComponent from '../commonComponents/headerComponent';
 import TableComponent from './table.component';
-import ChartComponent from './ChartComponent';
+import ChartComponent from './chartComponent';
 import Websocket from 'react-websocket';
 import cookie from 'react-cookie';
 import { NotificationContainer, NotificationManager } from 'react-notifications';
 import * as firebase from 'firebase';
 class TraderMainComponent extends React.Component {
-constructor(props) {
+    constructor(props) {
         super(props);
         this.state = {
             loggedIn: false,
             id: 'AM',
-            expired:"yes"    
+            expired: "yes"
         }
     }
     componentWillMount() {
@@ -23,28 +23,28 @@ constructor(props) {
     getUser() {
         firebase.auth().onAuthStateChanged((user) => {
             if (user) {
-                // User is signed in.
                 var username = user.email.toUpperCase().slice(0, 2);
                 console.log("users", username);
-               
-                if(this.props.params.id===username){
+
+                if (this.props.params.id === username) {
                     this.setState({
-                   loggedIn: true,
-                    id: username,
-                    expired:"no"
-                });
+                        loggedIn: true,
+                        id: username,
+                        expired: "no"
+                    });
                 }
-                else{
+                else {
                     this.setState({
-                    loggedIn: true,
-                    id: username,
-                    expired:"yes"
-                });
+                        loggedIn: true,
+                        id: username,
+                        expired: "yes"
+                    });
                 }
             } else {
-                this.setState({ loggedIn: false,
-                    expired:"yes"
-                    });
+                this.setState({
+                    loggedIn: false,
+                    expired: "yes"
+                });
             }
         });
     };
@@ -53,49 +53,49 @@ constructor(props) {
 
 
     handleData(data) {
-        var date=new Date();
+        var date = new Date();
         data = data.substring(2, data.length);
         data = JSON.parse(data);
         this.props.updateOrderSocket(data[0], data[1]);
-        // if(data[0] === 'orderCreatedEvent' || data[0]==='allOrdersDeletedEvent')
-        // this.props.setMap(data[0]+"_map",data[1]);
-        
 
-        if(data[0] === 'orderCreatedEvent' || data[0]==='allOrdersDeletedEvent'){
-            console.log("deleted");
-            if(data[0]==='allOrdersDeletedEvent')
-            {
-            if (this.props.notification)
-                NotificationManager.error('All trades Deleted!', 'Deleted', 3000);
-            this.props.notifyMessage({mess:'All trades Deleted',date:date.toLocaleString(),color:"bg-danger"});
-        }
-        this.props.setMap(data[0]+"_map",data[1]);
+
+        if (data[0] === 'orderCreatedEvent' || data[0] === 'allOrdersDeletedEvent') {
+            if (data[0] === 'allOrdersDeletedEvent') {
+                if (this.props.notification)
+                    NotificationManager.error('All trades Deleted!', 'Deleted', 3000);
+                this.props.notifyMessage({ mess: 'All trades Deleted', date: date.toLocaleString(), color: "bg-danger" });
+            }
+            this.props.setMap(data[0] + "_map", data[1]);
         }
 
-        else if (data[1].status === 'Executed' || data[0]==='executionCreatedEvent') {
-            var mess1,mess2;
-                    mess1 = `ID: ${data[1].orderId},
+        else if (this.props.notification && data[1].status === 'Executed') {
+            var mess1 = `ID: ${data[1].orderId},
                 Trader:${this.props.getMap.get(data[1].orderId).traderId},
                 Stock: ${this.props.getMap.get(data[1].orderId).symbol}`;
 
-                    mess2= `${data[1].quantityExecuted} stocks of ${this.props.getMap.get(data[1].orderId).symbol} 
-                    (ID:${data[1].orderId}) by ${this.props.getMap.get(data[1].orderId).traderId}
-                    are Executed!`            
 
-
-            if (this.props.notification && data[1].status === 'Executed')
-                NotificationManager.success(mess1, 'Executed!', 1200);
-            this.props.notifyMessage({mess:mess2,date:date.toLocaleString(),color:"bg-success"});
+            NotificationManager.success(mess1, 'Executed!', 3000);
         }
-        else if (data[1].status === 'Placed' || data[0]==='placementCreatedEvent') {
-            var mess1,mess2;
-                   mess1 = `ID: ${data[1].orderId},
+
+
+        else if (data[1].quantityExecuted > 8 || data[1].quantityPlaced > 8) {
+            if (data[0] === 'executionCreatedEvent') {
+                var mess1, mess2;
+                mess2 = `${data[1].quantityExecuted} stocks of ${this.props.getMap.get(data[1].orderId).symbol} 
+                    (ID:${data[1].orderId}) by ${this.props.getMap.get(data[1].orderId).traderId}
+                    are Executed!`
+                this.props.notifyMessage({ mess: mess2, date: date.toLocaleString(), color: "bg-success" });
+            }
+            else if (data[1].status === 'Placed' || data[0] === 'placementCreatedEvent') {
+                var mess1, mess2;
+                mess1 = `ID: ${data[1].orderId},
                 Trader:${this.props.getMap.get(data[1].orderId).traderId},
                 Stock: ${this.props.getMap.get(data[1].orderId).symbol}`;
-                    mess2= `${data[1].quantityPlaced} stocks of ${this.props.getMap.get(data[1].orderId).symbol} 
+                mess2 = `${data[1].quantityPlaced} stocks of ${this.props.getMap.get(data[1].orderId).symbol} 
                     (ID:${data[1].orderId}) by ${this.props.getMap.get(data[1].orderId).traderId}
-                    are Placed!`                
-            this.props.notifyMessage({mess:mess2,date:date.toLocaleString(),color:"bg-info"});
+                    are Placed!`
+                this.props.notifyMessage({ mess: mess2, date: date.toLocaleString(), color: "bg-info" });
+            }
         }
     }
 
@@ -109,7 +109,7 @@ constructor(props) {
         else if (this.props.view == 0) {
             view = <ChartComponent {...this.props} />;
         }
-            if (this.state.loggedIn && this.props.params.id === this.state.id)
+        if (this.state.loggedIn && this.props.params.id === this.state.id)
             return (
                 <div className="Trader">
                     <HeaderComponent {...this.props} />
@@ -118,20 +118,19 @@ constructor(props) {
                         onMessage={this.handleData.bind(this)} />
                     <NotificationContainer />
                 </div>
- 
+
             )
-        else if(this.state.expired==="yes" && this.state.loggedIn){
-             return (<div>
-                    <h1 className="fontColor">Session Expired!</h1>
-                </div>)
+        else if (this.state.expired === "yes" && this.state.loggedIn) {
+            return (<div>
+                <h1 className="fontColor">Session Expired!</h1>
+            </div>)
         }
         else {
-                           console.log(this.state.expired);
-            
-        return(
-            <h1 className="fontColor">Loading...</h1>
-        )
-       
+
+            return (
+                <h1 className="fontColor">Loading...</h1>
+            )
+
         }
     }
 };

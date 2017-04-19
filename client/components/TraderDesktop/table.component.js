@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import {BootstrapTable,TableHeaderColumn} from 'react-bootstrap-table';
 import TextField from 'material-ui/TextField';
 import Checkbox from 'material-ui/Checkbox';
-import * as links from '../common-components/app.config';
+import * as links from '../commonComponents/app.config';
 
 class TableComponent extends React.Component{
     constructor(props){

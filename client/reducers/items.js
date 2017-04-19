@@ -28,7 +28,6 @@ export function setMap(state=new Map(),action){
           return state;    
     }
   
-    console.log(action.type);
     return state;
 }
 
@@ -56,7 +55,6 @@ export function orders(state=[],action){
         case 'ORDERS_FETCH_DATA_SUCCESS':
             return action.orders;
         case 'orderCreatedEvent':
-            console.log("orderCreatedEvent",action.data);
             return [action.data,...state];
         case 'allOrdersDeletedEvent':
             return [];

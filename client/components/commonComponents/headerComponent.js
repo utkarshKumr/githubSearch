@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Link } from 'react-router';
 import cookie from 'react-cookie';
-import NavigationComponent from '../common-components/navbar.component';
+import NavigationComponent from '../commonComponents/navbar.component';
 import Badge from 'material-ui/Badge';
 import IconButton from 'material-ui/IconButton';
 import NotificationsIcon from 'material-ui/svg-icons/social/notifications';
@@ -20,18 +20,14 @@ class HeaderComponent extends React.Component {
                 firebase.auth().signOut()
             .then(()=>{
                 console.log('sign out successful');
-                cookie.remove('id',{ path: '/' });
                 localStorage.removeItem('user');
             })
             .catch(function(error) {
-                // Handle Errors here.
+               
                 var errorCode = error.code;
                 var errorMessage = error.message;
-                // ...
             });
         
-        // cookie.remove('id', { path: '/' });
-        // localStorage.removeItem('user');
     }
     render() {
         if (this.props.user.length > 0)
