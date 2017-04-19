@@ -1,6 +1,6 @@
 import {expect} from 'chai';
 import sinon from 'sinon';
-import * as actions from '../actions/items';
+import * as actions from '../actions/index';
 describe('stock fetch suite', () => {
   let sandbox;
   let server;

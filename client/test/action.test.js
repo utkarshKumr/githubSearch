@@ -1,4 +1,4 @@
-import * as actions from '../actions/items'
+import * as actions from '../actions/index'
 
 
 
