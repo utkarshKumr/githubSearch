@@ -70,6 +70,23 @@ export function getStocks(url){
         })
       }
 }
+export function getStocks1(url){
+   
+             return axios({
+			url: url,
+			timeout: 20000,
+			method: 'get',
+			responseType: 'json'
+		})
+			.then(function(response) {
+				dispatch(stockFetchDataSuccess(response.data));
+			})
+			.catch(function(response){
+				dispatch(itemsHasErrored(response.data));
+				// dispatch(pushState(null,'/error'));
+        })
+      }
+
 export function deleteOrders(url){
     return (dispatch) => {
              return axios({
@@ -157,6 +174,28 @@ export function getOrders(url) {
 				dispatch(itemsHasErrored(false));
         })}
 }
+export function getOrders1(url) {
+    
+      return axios({
+			url: url,
+			timeout: 20000,
+			method: 'get',
+			responseType: 'json'
+		})
+			.then(function(response) {
+                console.log('inseide getorders')
+               dispatch(setMap("SET_MAP",response.data));
+                
+				dispatch(ordersFetchDataSuccess(response.data));
+			})
+            // .then(function(response){
+            //     console.log("response",response.data);
+                
+            //         dispatch(setMap(response.data));
+            // })
+			.catch(function(response){
+				dispatch(itemsHasErrored(false));
+        })}
 
 export function changeView(view){
     return {
