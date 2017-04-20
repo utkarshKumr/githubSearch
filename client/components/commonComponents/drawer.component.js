@@ -40,7 +40,7 @@ export default class DrawerComponent extends React.Component {
       left: -28,
 
     };
- var cleft = -580;
+ var cleft = -650;
     var ctop = 0;
     if(this.state.open)
     {
