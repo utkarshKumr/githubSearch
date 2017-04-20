@@ -9,7 +9,6 @@ import NotificationsIcon from 'material-ui/svg-icons/social/notifications';
 import FlatButton from 'material-ui/FlatButton';
 import TextField from 'material-ui/TextField';
 import Divider from 'material-ui/Divider';
-
 export default class DrawerComponent extends React.Component {
 
   constructor(props) {
@@ -41,9 +40,17 @@ export default class DrawerComponent extends React.Component {
       left: -28,
 
     };
-
+ var cleft = -580;
+    var ctop = 0;
+    if(this.state.open)
+    {
+      cleft=0;
+    }
+    var ctrans = 'translate('+cleft+'px, '+ctop+'px)';
+    
     const drawerStyle = {
-      width: "40%"
+      width: "40%",
+      transform: ctrans 
     }
     const buttonStyle = {
       marginTop: 23,
