@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import {Link} from 'react-router';
 import cookie from 'react-cookie';
 import * as firebase from 'firebase';
-import {browserHistory} from 'react-router';
+import {hashHistory} from 'react-router';
 import Paper from 'material-ui/Paper';
 import DropDownMenu from 'material-ui/DropDownMenu';
 import MenuItem from 'material-ui/MenuItem';
@@ -28,7 +28,7 @@ constructor(props)
     this.handleChange = this.handleChange.bind(this);
 
     this.props.userName(this.state.name);
-};   
+};
 
     componentDidMount(){
         this.props.getTraders(links.users);
@@ -60,7 +60,7 @@ constructor(props)
         var password=this.refs.password.getValue();
         firebase.auth().signInWithEmailAndPassword(email, password)
             .then(()=>{
-                browserHistory.push(`/view/${this.state.id}`);
+                hashHistory.push(`/view/${this.state.id}`);
             })
 
             .catch((error)=> {

@@ -30,6 +30,11 @@ module.exports = {
       include: path.join(__dirname, 'client'),
       loader: 'style-loader!css-loader!stylus-loader'
     },
+    {
+    test: /\.css$/,
+    include: path.join(__dirname, 'client'),
+    loader: 'style-loader!css-loader?modules=true&localIdentName=[name]__[local]___[hash:base64:5]'
+},
     //Image loader
     {
         test: /\.(jpe?g|png|gif|svg)$/i,
