@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {BootstrapTable,TableHeaderColumn} from 'react-bootstrap-table';
+import {BootstrapTable,TableHeaderColumn,BSTable} from 'react-bootstrap-table';
 import TextField from 'material-ui/TextField';
 import Checkbox from 'material-ui/Checkbox';
 import * as links from '../commonComponents/app.config';
@@ -43,11 +43,36 @@ createCustomModalHeader(onClose, onSave) {
     notify(){
         this.props.notify();
     }
+  isExpandableRow(row) {
+    return true;
+  }
+
+  expandComponent(row) {
+    return (
+      <pre>
+            <p>ID:{row.id}</p>
+            <p>Placed:{row.quantityPlaced}</p>
+            <p>Executed:{row.quantityExecuted}</p>
+            <p>Status:{row.status}</p>
+            <p>Trader:{row.traderId}</p>
+      </pre>
+    );
+  }
+
+  expandComponent2(row){
+      return(
+          <pre>
+            <p>Trader:{row.traderId}</p>
+            <p>Priority:{row.priority}</p>
+        </pre>
+      );
+  }    
 
     render(){
 
                 const options = {
-            insertModalHeader: this.createCustomModalHeader                  
+            insertModalHeader: this.createCustomModalHeader,
+                  expandRowBgColor: 'rgb(242, 255, 163)'                  
     };
     var orders=this.props.orders;
     if(this.state.search)
@@ -102,7 +127,10 @@ createCustomModalHeader(onClose, onSave) {
 
                <div className="col-xs-12 visible-xs">
                     <Checkbox label="Notifications" style={style.checkbox} checked={this.props.notification} onClick={this.notify.bind(this)}/>
-              <BootstrapTable data={orders} options={options}  striped hover pagination>
+              <BootstrapTable data={orders} options={options}  striped hover pagination
+        expandableRow={ this.isExpandableRow.bind(this) }
+        expandComponent={ this.expandComponent.bind(this) }
+              >
                 <TableHeaderColumn width='50' dataField='id' isKey dataAlign="center">ID</TableHeaderColumn>
               
                 <TableHeaderColumn width='60' dataField='side' dataAlign="center">Side</TableHeaderColumn>
@@ -116,7 +144,10 @@ createCustomModalHeader(onClose, onSave) {
 
                 <div className="col-xs-12 visible-sm">
                      <Checkbox label="Notifications" style={style.checkbox} checked={this.props.notification} onClick={this.notify.bind(this)}/>
-              <BootstrapTable data={orders} options={options}  striped hover pagination>
+              <BootstrapTable data={orders} options={options}  striped hover pagination
+        expandableRow={ this.isExpandableRow.bind(this) }
+        expandComponent={ this.expandComponent2.bind(this) }              
+              >
                 <TableHeaderColumn dataField='id' isKey dataAlign="center">ID</TableHeaderColumn>
                 <TableHeaderColumn dataField='creationTime' dataAlign="center">Creation Time</TableHeaderColumn>
                 <TableHeaderColumn dataField='side' dataAlign="center">Side</TableHeaderColumn>

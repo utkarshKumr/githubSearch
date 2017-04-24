@@ -17,16 +17,23 @@ class ChartComponent extends React.Component{
     }
 
 
-    changeWidth(windowSize){
-        if (windowSize.windowWidth <= 768 ) {
+ changeWidth(windowSize){
+
+         if(windowSize.windowWidth < 500){
+            this.width = windowSize.windowWidth;
+            this.legendWidth=this.width*0.35;
+            
+        }          
+        else if (windowSize.windowWidth <= 768 && windowSize.windowWidth >= 500) {
             this.width = windowSize.windowWidth;
             this.legendWidth=this.width*0.237;
         }
         else if(windowSize.windowWidth < 998){
             this.width = windowSize.windowWidth-150;
-            this.legendWidth=this.width*0.5;
+            this.legendWidth=this.width;
             
         }
+     
         else {
             this.width = windowSize.windowWidth;
             this.legendWidth=this.width*0.5;
@@ -100,7 +107,7 @@ class ChartComponent extends React.Component{
                 <WindowResizeListener onResize={this.changeWidth.bind(this)}/>
                     
                     <div className="container col-xs-12 chart">
-                     <div className="col-md-6 col-xs-12 col-xs-offset-8 col-sm-offset-6">
+                     <div className="col-md-6 col-xs-12">
                     <Legend
                         width= {legendWidth}
                         height= {150}

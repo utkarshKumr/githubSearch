@@ -5,6 +5,7 @@ import HeaderComponent from '../commonComponents/headerComponent';
 import TableComponent from './table.component';
 import ChartComponent from './chartComponent';
 import Websocket from 'react-websocket';
+import {websocketUrl } from '../commonComponents/app.config';
 import cookie from 'react-cookie';
 import { NotificationContainer, NotificationManager } from 'react-notifications';
 import * as firebase from 'firebase';
@@ -114,7 +115,7 @@ class TraderMainComponent extends React.Component {
                 <div className="Trader">
                     <HeaderComponent {...this.props} />
                     {view}
-                    <Websocket url='ws://localhost:8080/socket.io/?transport=websocket'
+                    <Websocket url={websocketUrl}
                         onMessage={this.handleData.bind(this)} />
                     <NotificationContainer />
                 </div>

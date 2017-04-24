@@ -5,7 +5,7 @@ import { Provider } from 'react-redux';
 import configureStore from './store/configureStore';
 import App from './components/ItemList';
 import { Router, Route, IndexRoute, hashHistory } from "react-router";
-import { baseUrl } from './components/commonComponents/common';
+import { baseUrl} from './components/commonComponents/common';
 import Main from './components/Main.component';
 import LoginComponent from './components/login/login';
 import TraderMainComponent from './components/TraderDesktop/main.trader.component';
