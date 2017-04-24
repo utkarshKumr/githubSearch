@@ -111,17 +111,17 @@ createCustomModalHeader(onClose, onSave) {
                     <Checkbox label="Notifications" style={style.checkbox} checked={this.props.notification} onClick={this.notify.bind(this)}/>
                <div className="tableInside">     
               <BootstrapTable data={orders} options={options} hover pagination>
-                <TableHeaderColumn dataField='id' isKey dataAlign="center">ID</TableHeaderColumn>
-                <TableHeaderColumn dataField='creationTime' dataAlign="center">Creation Time</TableHeaderColumn>
-                <TableHeaderColumn dataField='side' dataAlign="center">Side</TableHeaderColumn>
-                <TableHeaderColumn dataField='symbol' dataAlign="center">Symbol</TableHeaderColumn>
-                <TableHeaderColumn dataField='quantity' dataAlign="center">Quantity</TableHeaderColumn>
-                <TableHeaderColumn dataField='quantityPlaced' dataAlign="center">Placed</TableHeaderColumn>
-                <TableHeaderColumn dataField='quantityExecuted' dataAlign="center">Executed</TableHeaderColumn>
-                <TableHeaderColumn dataField='limitPrice' dataAlign="center" dataFormat={ this.priceFormatter }>Limit Price</TableHeaderColumn>
-                <TableHeaderColumn dataField='priority' dataAlign="center">Priority</TableHeaderColumn>
-                <TableHeaderColumn dataField='status' dataAlign="center">Status</TableHeaderColumn>
-                <TableHeaderColumn  dataField='traderId' dataAlign="center">Trader</TableHeaderColumn>                                                
+                <TableHeaderColumn dataField='id' isKey dataAlign="center" dataSort={true}>ID</TableHeaderColumn>
+                <TableHeaderColumn width='120' dataField='creationTime' dataAlign="center" dataSort={true}>Creation Time</TableHeaderColumn>
+                <TableHeaderColumn dataField='side' dataAlign="center" dataSort={true}>Side</TableHeaderColumn>
+                <TableHeaderColumn dataField='symbol' dataAlign="center" dataSort={true}>Symbol</TableHeaderColumn>
+                <TableHeaderColumn dataField='quantity' dataAlign="center" dataSort={true}>Quantity</TableHeaderColumn>
+                <TableHeaderColumn dataField='quantityPlaced' dataAlign="center" dataSort={true}>Placed</TableHeaderColumn>
+                <TableHeaderColumn dataField='quantityExecuted' dataAlign="center" dataSort={true}>Executed</TableHeaderColumn>
+                <TableHeaderColumn dataField='limitPrice' dataAlign="center" dataFormat={ this.priceFormatter } dataSort={true}>Limit Price</TableHeaderColumn>
+                <TableHeaderColumn dataField='priority' dataAlign="center" dataSort={true}>Priority</TableHeaderColumn>
+                <TableHeaderColumn dataField='status' dataAlign="center" dataSort={true}>Status</TableHeaderColumn>
+                <TableHeaderColumn  dataField='traderId' dataAlign="center" dataSort={true}>Trader</TableHeaderColumn>                                                
             </BootstrapTable>
             </div>
             </div>
