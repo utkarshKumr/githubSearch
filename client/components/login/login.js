@@ -155,7 +155,7 @@ _handleKeyPress = (e) => {
             <RaisedButton label="Login" primary={true} style={styles}  onClick={this.firebaseAuth.bind(this)}/>
             </form>
             <CircularProgress style={pstyle} id="progressBar"/>
-            <div style={powered} id="poweredBar">
+            <div id="poweredBar">
                 <h5 >Powered by Sapient</h5>
               </div>
             </Paper>
