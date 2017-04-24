@@ -20,6 +20,12 @@ class TableComponent extends React.Component{
     priceFormatter(cell, row) {
         return `<i class='glyphicon glyphicon-usd'></i> ${cell}`;
     }
+    dateFormat(cell,row){
+        cell=cell.split('T');
+        var time=cell[1].split('.');
+        return `${cell[0]}
+        ${time[0]}`;
+    }
 
 createCustomModalHeader(onClose, onSave) {
     const headerStyle = {
@@ -112,7 +118,7 @@ createCustomModalHeader(onClose, onSave) {
                <div className="tableInside">     
               <BootstrapTable data={orders} options={options} hover pagination>
                 <TableHeaderColumn dataField='id' isKey dataAlign="center" dataSort={true}>ID</TableHeaderColumn>
-                <TableHeaderColumn width='120' dataField='creationTime' dataAlign="center" dataSort={true}>Creation Time</TableHeaderColumn>
+                <TableHeaderColumn width='180' dataField='creationTime' dataAlign="center" dataSort={true} dataFormat={this.dateFormat}>Time</TableHeaderColumn>
                 <TableHeaderColumn dataField='side' dataAlign="center" dataSort={true}>Side</TableHeaderColumn>
                 <TableHeaderColumn dataField='symbol' dataAlign="center" dataSort={true}>Symbol</TableHeaderColumn>
                 <TableHeaderColumn dataField='quantity' dataAlign="center" dataSort={true}>Quantity</TableHeaderColumn>
