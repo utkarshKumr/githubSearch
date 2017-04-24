@@ -111,18 +111,6 @@ _handleKeyPress = (e) => {
         color:"white",
         fontWeight:900
       }
-      const powered={
-        padding: 10,
-        opacity: 0.7,
-        marginTop:70,
-        width:'100%',
-        height:'12%',
-        position:'absolute',
-        lineHeight: 3,
-        backgroundColor: "black",
-        color:"white"
-
-      }
 
       const pstyle = {
           visibility:'hidden'
