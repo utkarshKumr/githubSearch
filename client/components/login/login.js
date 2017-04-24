@@ -129,7 +129,7 @@ _handleKeyPress = (e) => {
             <center>
             <Paper className="login " style={style} zDepth={5} rounded={false}>
             <div>
-              <h1 style={hstyle}>Trader Login</h1>
+              <h1 style={hstyle}>Welcome</h1>
             </div>
             <br/>
             <form className="form-horizontal">
