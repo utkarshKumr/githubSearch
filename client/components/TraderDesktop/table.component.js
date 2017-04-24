@@ -50,11 +50,12 @@ createCustomModalHeader(onClose, onSave) {
   expandComponent(row) {
     return (
       <pre>
-            <p>ID:{row.id}</p>
-            <p>Placed:{row.quantityPlaced}</p>
-            <p>Executed:{row.quantityExecuted}</p>
-            <p>Status:{row.status}</p>
-            <p>Trader:{row.traderId}</p>
+            <p>ID:<b>{row.id}</b></p>
+            <p>Limit Price:<b>{row.limitPrice}</b></p>
+            <p>Placed:<b>{row.quantityPlaced}</b></p>
+            <p>Executed:<b>{row.quantityExecuted}</b></p>
+            <p>Status:<b>{row.status}</b></p>
+            <p>Trader:<b>{row.traderId}</b></p>
       </pre>
     );
   }
@@ -62,8 +63,8 @@ createCustomModalHeader(onClose, onSave) {
   expandComponent2(row){
       return(
           <pre>
-            <p>Trader:{row.traderId}</p>
-            <p>Priority:{row.priority}</p>
+            <p>Trader:<b>{row.traderId}</b></p>
+            <p>Priority:<b>{row.priority}</b></p>
         </pre>
       );
   }    
@@ -135,9 +136,9 @@ createCustomModalHeader(onClose, onSave) {
               
                 <TableHeaderColumn width='60' dataField='side' dataAlign="center">Side</TableHeaderColumn>
                 <TableHeaderColumn width='80' dataField='symbol' dataAlign="center">Symbol</TableHeaderColumn>
-                <TableHeaderColumn width='90' dataField='quantity' dataAlign="center">Quantity</TableHeaderColumn>
+                <TableHeaderColumn width='80' dataField='quantity' dataAlign="center">Quantity</TableHeaderColumn>
             
-                <TableHeaderColumn width='90' dataField='limitPrice' dataAlign="center" dataFormat={ this.priceFormatter }>Limit Price</TableHeaderColumn>
+                {/*<TableHeaderColumn width='90' dataField='limitPrice' dataAlign="center" dataFormat={ this.priceFormatter }>Limit Price</TableHeaderColumn>*/}
                                                             
             </BootstrapTable>
             </div>
