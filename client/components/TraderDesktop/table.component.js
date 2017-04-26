@@ -138,11 +138,11 @@ createCustomModalHeader(onClose, onSave) {
         expandableRow={ this.isExpandableRow.bind(this) }
         expandComponent={ this.expandComponent.bind(this) }
               >
-                <TableHeaderColumn width='50' dataField='id' isKey dataAlign="center">ID</TableHeaderColumn>
+                <TableHeaderColumn width='50' dataField='id' isKey dataSort={true} dataAlign="center">ID</TableHeaderColumn>
               
-                <TableHeaderColumn width='60' dataField='side' dataAlign="center">Side</TableHeaderColumn>
-                <TableHeaderColumn width='80' dataField='symbol' dataAlign="center">Symbol</TableHeaderColumn>
-                <TableHeaderColumn width='80' dataField='quantity' dataAlign="center">Quantity</TableHeaderColumn>
+                <TableHeaderColumn width='60' dataField='side' dataSort={true} dataAlign="center">Side</TableHeaderColumn>
+                <TableHeaderColumn width='80' dataField='symbol' dataSort={true} dataAlign="center">Symbol</TableHeaderColumn>
+                <TableHeaderColumn width='80' dataField='quantity' dataSort={true} dataAlign="center">Quantity</TableHeaderColumn>
             
                 {/*<TableHeaderColumn width='90' dataField='limitPrice' dataAlign="center" dataFormat={ this.priceFormatter }>Limit Price</TableHeaderColumn>*/}
                                                             
@@ -155,16 +155,16 @@ createCustomModalHeader(onClose, onSave) {
         expandableRow={ this.isExpandableRow.bind(this) }
         expandComponent={ this.expandComponent2.bind(this) }              
               >
-                <TableHeaderColumn dataField='id' isKey dataAlign="center">ID</TableHeaderColumn>
-                <TableHeaderColumn dataField='creationTime' dataAlign="center">Creation Time</TableHeaderColumn>
-                <TableHeaderColumn dataField='side' dataAlign="center">Side</TableHeaderColumn>
-                <TableHeaderColumn dataField='symbol' dataAlign="center">Symbol</TableHeaderColumn>
-                <TableHeaderColumn dataField='quantity' dataAlign="center">Quantity</TableHeaderColumn>
-                <TableHeaderColumn dataField='quantityPlaced' dataAlign="center">Placed</TableHeaderColumn>
-                <TableHeaderColumn dataField='quantityExecuted' dataAlign="center">Executed</TableHeaderColumn>
-                <TableHeaderColumn dataField='limitPrice' dataAlign="center" dataFormat={ this.priceFormatter }>Limit Price</TableHeaderColumn>
+                <TableHeaderColumn dataSort={true} dataField='id' isKey dataAlign="center">ID</TableHeaderColumn>
+                <TableHeaderColumn dataSort={true} dataField='creationTime' dataAlign="center">Creation Time</TableHeaderColumn>
+                <TableHeaderColumn dataSort={true} dataField='side' dataAlign="center">Side</TableHeaderColumn>
+                <TableHeaderColumn dataSort={true} dataField='symbol' dataAlign="center">Symbol</TableHeaderColumn>
+                <TableHeaderColumn dataSort={true} dataField='quantity' dataAlign="center">Quantity</TableHeaderColumn>
+                <TableHeaderColumn dataSort={true}dataField='quantityPlaced' dataAlign="center">Placed</TableHeaderColumn>
+                <TableHeaderColumn dataSort={true} dataField='quantityExecuted' dataAlign="center">Executed</TableHeaderColumn>
+                <TableHeaderColumn dataSort={true} dataField='limitPrice' dataAlign="center" dataFormat={ this.priceFormatter }>Limit Price</TableHeaderColumn>
         
-                <TableHeaderColumn dataField='status' dataAlign="center">Status</TableHeaderColumn>
+                <TableHeaderColumn dataField='status' dataSort={true} dataAlign="center">Status</TableHeaderColumn>
                                                    
             </BootstrapTable>
             </div>
