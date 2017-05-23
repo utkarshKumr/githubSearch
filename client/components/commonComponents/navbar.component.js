@@ -35,13 +35,13 @@ class NavigationComponent extends React.Component {
     this.state = {
       isOpen: false,
       id: 0,
-      open:false
+      open: false
     }
 
   }
 
 
-    handleTouchTap(event){
+  handleTouchTap(event) {
     event.preventDefault();
 
     this.setState({
@@ -50,7 +50,7 @@ class NavigationComponent extends React.Component {
     });
   };
 
-  handleRequestClose(){
+  handleRequestClose() {
     this.setState({
       open: false
     });
@@ -67,7 +67,7 @@ class NavigationComponent extends React.Component {
 
     this.setState({
       isOpen: true,
-      open:false
+      open: false
     });
   };
 
@@ -80,7 +80,7 @@ class NavigationComponent extends React.Component {
   deleteOrder() {
     this.handleRequestClose();
     this.props.deleteOrders(links.orders)
-    
+
   }
 
 
@@ -126,8 +126,8 @@ class NavigationComponent extends React.Component {
       margin: 5,
       width: 90,
       height: 25,
-      menu:{
-        marginTop:15
+      menu: {
+        marginTop: 15
       }
     };
 
@@ -162,34 +162,34 @@ class NavigationComponent extends React.Component {
         </span>
         <span className="visible-xs col-xs-12 container-fluid">
           <div className="col-xs-5 pull-left">
-<RaisedButton
-          onClick={this.handleTouchTap.bind(this)}
-          label="Menu"
-          primary={true}
-          style={style.menu}
-        />
-        <Popover
-          open={this.state.open}
-          anchorEl={this.state.anchorEl}
-          anchorOrigin={{horizontal: 'left', vertical: 'bottom'}}
-          targetOrigin={{horizontal: 'left', vertical: 'top'}}
-          onRequestClose={this.handleRequestClose.bind(this)}
-        >
-          <Menu>
-            <MenuItem primaryText="Trade" onClick={this.openModal.bind(this)}/>
-            <MenuItem primaryText="Delete All" onClick={this.deleteOrder.bind(this)}/>
-            <MenuItem primaryText="Refresh" onClick={this.refreshOrders.bind(this)}/>
-          </Menu>
-        </Popover>
-        </div>
-        <div className="col-xs-5 pull-right">
-        <RaisedButton
-          onClick={this.changeView.bind(this)}
-          label="View"
-          style={style.menu}
-          secondary={true}
-        />
-        </div>
+            <RaisedButton
+              onClick={this.handleTouchTap.bind(this)}
+              label="Menu"
+              primary={true}
+              style={style.menu}
+            />
+            <Popover
+              open={this.state.open}
+              anchorEl={this.state.anchorEl}
+              anchorOrigin={{ horizontal: 'left', vertical: 'bottom' }}
+              targetOrigin={{ horizontal: 'left', vertical: 'top' }}
+              onRequestClose={this.handleRequestClose.bind(this)}
+            >
+              <Menu>
+                <MenuItem primaryText="Trade" onClick={this.openModal.bind(this)} />
+                <MenuItem primaryText="Delete All" onClick={this.deleteOrder.bind(this)} />
+                <MenuItem primaryText="Refresh" onClick={this.refreshOrders.bind(this)} />
+              </Menu>
+            </Popover>
+          </div>
+          <div className="col-xs-5 pull-right">
+            <RaisedButton
+              onClick={this.changeView.bind(this)}
+              label="View"
+              style={style.menu}
+              secondary={true}
+            />
+          </div>
         </span>
         <NotificationContainer />
       </div>

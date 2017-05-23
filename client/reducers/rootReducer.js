@@ -1,16 +1,12 @@
 import { combineReducers } from 'redux';
-import {traderItems, stockItems,newUser,orders,setView,auth,id,notification,nMessage,setMap} from './items';
+import {searchInput,searchedData,loading, activeElement, count} from './items';
 
 var rootReducer= combineReducers({
-
-     traderItems,
-     stockItems,
-     newUser,
-     orders,
-     setView,
-     notification,
-     nMessage,
-     setMap
+    searchInput,
+    searchedData,
+    loading,
+    activeElement,
+    count
 });
 
 export default rootReducer;
