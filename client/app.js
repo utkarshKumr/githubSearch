@@ -5,7 +5,6 @@ import { Provider } from 'react-redux';
 import configureStore from './store/configureStore';
 import App from './components/ItemList';
 import { Router, Route, IndexRoute, hashHistory } from "react-router";
-import { baseUrl} from './components/commonComponents/common';
 import Main from './components/Main.component';
 import SearchComponent from './components/search/search';
 import SearchResults from './components/results/searchResults';
