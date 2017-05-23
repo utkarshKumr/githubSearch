@@ -8,7 +8,6 @@ export function itemsHasErrored(bool) {
 }
 
 export function resultsFetchDataSuccess(data) {
-    console.log(data);
     return {
         type: 'RESULT_DATA',
         data
